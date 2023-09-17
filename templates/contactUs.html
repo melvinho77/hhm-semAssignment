@@ -86,14 +86,10 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Contact Us</h1>
-        <p>Thank you for visiting our website.</p>
-        <p>Your IP address: {{ user_ip }}</p>
-        <p>Your User-Agent: {{ user_agent }}</p>
-        <p>Your Host Name: {{ host_name }}</p>
-        <p>We appreciate your interest in our services.</p>
-    </div>
+    <h1>Contact Us</h1>
+    <p>Host Name: {{ network_details['Host Name'] }}</p>
+    <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+    <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
 </body>
 
 </html>
