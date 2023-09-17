@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="wide wow-animation">
+
+<head runat="server">
+    <title>Tunku Abdul Rahman University of Management & Technology - Faculty of Computing and Information Technology
+    </title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="keywords"
+        content="computer science courses in malaysia, computer programming courses in malaysia, computer engineering courses in malaysia">
+    <meta name="description"
+        content="Tunku Abdul Rahman University of Management and Technology is a distinguished institution of higher learning acknowleged locally, nationally and globally for its excellence in providing opportunities for intellectual, personal and professional development.">
+
+    <link rel="icon" href="images/tarIco.ico" type="image/x-icon">
+
+    <!-- bootstrap & fontawesome -->
+
+    <link rel="stylesheet" href="assets/css/colorbox.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+
+
+
+    <!--link rel="stylesheet" href="assets/css/jquery-ui.custom.css" /-->
+
+    <!--link rel="stylesheet" href="assets/css/chosen.css" /-->
+    <!--link rel="stylesheet" href="assets/css/datepicker.css" /-->
+    <!--link rel="stylesheet" href="assets/css/bootstrap-timepicker.css" /-->
+    <!--link rel="stylesheet" href="assets/css/daterangepicker.css" />
+            <!--link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.css" /-->
+    <!--link rel="stylesheet" href="assets/css/colorpicker.css" /-->
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="assets/css/ace-fonts.css" />
+
+
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="assets/css/ace.css" class="ace-main-stylesheet" />
+
+    <!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+    <!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.css" />
+		<![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+    <script src="assets/js/ace-extra.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+			<script src="assets/js/html5shiv.js"></script>
+			<script src="assets/js/respond.js"></script>
+		<![endif]-->
+
+
+    <link rel="stylesheet" type="text/css"
+        href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,400italic,700,900%7CPlayfair+Display:700italic,900">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="assets/css/print.css" />
+
+
+    <link rel="stylesheet" href="assets/css/gold-orange.css?d=2023/08/27 19:06:45">
+    <link rel="stylesheet" href="assets/css/custom.css" />
+
+    <!--[if lt IE 10]>
+    		<div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    		<script src="assets/js/html5shiv.min.js"></script>
+		<![endif]-->
+
+    <style>
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 100px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .my-float {
+            margin-top: 16px;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body style="">
+    <div class="page">
+
+        <header class="page-head">
+            <style>
+                #tarclogo {
+                    width: 82px;
+                    margin-bottom: 0px;
+                }
+
+                @media (min-width: 992px) {
+                    #tarclogo {
+                        margin-top: 5px;
+                        height: 55px;
+                        margin-bottom: -81px;
+                        width: auto;
+                    }
+                }
+
+                @media (min-width: 1366px) {
+                    #tarclogo {
+                        height: 70px;
+                        margin-bottom: -67px;
+                    }
+                }
+
+                #menuCon {
+                    max-width: 1000px;
+                    padding-left: 20px;
+                }
+            </style>
+            <div class="rd-navbar-wrap">
+                <nav data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
+                    data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static"
+                    data-lg-device-layout="rd-navbar-static" data-stick-up-clone="false"
+                    data-body-class="rd-navbar-static-smooth" data-md-stick-up-offset="60px"
+                    data-lg-stick-up-offset="60px" data-md-stick-up="true" data-lg-stick-up="true"
+                    class="rd-navbar rd-navbar-default">
+
+                    <div class="rd-navbar-inner" style="padding: 0;">
+                        <div class="rd-navbar-panel">
+                            <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true"
+                                class="rd-navbar-toggle"><span></span></button>
+
+                            <a href="https://www.tarc.edu.my/" class="rd-navbar-brand brand"><span style="float: left;">
+                                    <img src="images/tarumt-logo1.png" alt="logo" id="tarclogo" /></span>
+                            </a>
+                        </div>
+
+                        <div class="topbar">
+                            &nbsp;
+                        </div>
+                        <!-- END topbar -->
+                    </div>
+                    <!-- END rd-navbar-inner -->
+
+                    <div class="rd-navbar-inner" style="padding-top: 0; padding-bottom: 10px;">
+
+                        <div style="height: 0;">
+                        </div>
+                        <div class="rd-navbar-group rd-navbar-search-wrap" id="menuCon">
+                            <div class="rd-navbar-nav-wrap">
+                                <div class="rd-navbar-nav-inner">
+                                    <div class="rd-navbar-search">
+                                        <!--<form action="search-results.html" method="GET" data-search-live="rd-search-results-live" class="rd-search">-->
+                                        <form method="GET" data-search-live="rd-search-results-live" class="rd-search">
+                                            <div class="form-group">
+                                                <script async
+                                                    src="https://cse.google.com/cse.js?cx=015592505060343716805:_84q5vpfkgu">
+                                                    </script>
+                                                <div class="gcse-searchbox"></div>
+
+                                                <!--<div id="rd-search-results-live" class="rd-search-results-live"></div>-->
+                                            </div>
+                                        </form>
+                                        <button data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-search-wrap"
+                                            class="rd-navbar-search-toggle"></button>
+                                    </div>
+                                    <!-- End rd-navbar-search -->
+
+
+                                    <ul class="rd-navbar-nav" id="navCon">
+                                        <li><a href="https://www.tarc.edu.my/focs/index.jsp" target="_self"
+                                                class="ja"><span class="fa-stack fa-lg"><i
+                                                        class="fa fa-circle fa-stack-2x gold-orange"></i><i
+                                                        class="fa fa-home fa-stack-1x fa-inverse"></i></span>Home </a>
+                                        <li class=""><a href="https://www.tarc.edu.my/focs/about-us/" target="_self"
+                                                class="ja"><span class="fa-stack fa-lg"><i
+                                                        class="fa fa-circle fa-stack-2x gold-orange"></i><i
+                                                        class="fa fa-briefcase fa-stack-1x fa-inverse"></i></span>About
+                                                Us</a></li>
+                                        <li class=""><a href="https://www.tarc.edu.my/focs/facilities/" target="_self"
+                                                class="ja"><span class="fa-stack fa-lg"><i
+                                                        class="fa fa-circle fa-stack-2x gold-orange"></i><i
+                                                        class="fa fa-laptop fa-stack-1x fa-inverse"></i></span>Facilities</a>
+                                        </li>
+                                        <li class=""><a href="https://www.tarc.edu.my/focs/research/" target="_self"
+                                                class="ja"><span class="fa-stack fa-lg"><i
+                                                        class="fa fa-circle fa-stack-2x gold-orange"></i><i
+                                                        class="fa fa-book fa-stack-1x fa-inverse"></i></span>Research</a>
+                                            <ul class="rd-navbar-dropdown" style="margin-top: 0;">
+                                                <!--put fmenu UL-->
+                                                <li><a href="https://www.tarc.edu.my/focs/research/cictic/"
+                                                        target="_self" style="cursor: pointer;" class="ja">Centre for
+                                                        ICT Innovations and Creativity (CICTIC)</a></li>
+                                                <li><a href="https://www.tarc.edu.my/focs/research/cdsa/" target="_self"
+                                                        style="cursor: pointer;" class="ja">Centre for Data Science and
+                                                        Analytics (CDSA)</a></li>
+                                                <li><a href="https://www.tarc.edu.my/focs/research/cci/" target="_self"
+                                                        style="cursor: pointer;" class="ja">Centre for Computational
+                                                        Intelligence (CCI)</a></li>
+                                                <li><a href="https://www.tarc.edu.my/focs/research/ciot/" target="_self"
+                                                        style="cursor: pointer;" class="ja">Centre for Internet of
+                                                        Things (CIOT)</a></li>
+                                                <li><a href="https://www.tarc.edu.my/focs/research/ccncs/"
+                                                        target="_self" style="cursor: pointer;" class="ja">Centre for
+                                                        Computer Networking and Cyber Security (CCNCS)</a></li>
+                                                <li><a href="https://www.tarc.edu.my/focs/research/cicrd/"
+                                                        target="_self" style="cursor: pointer;" class="ja">Centre for
+                                                        Integrated Circuit Research and Development (CICR&D)</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class=""><a href="#" target="_self" class="ja"><span
+                                                    class="fa-stack fa-lg"><i
+                                                        class="fa fa-circle fa-stack-2x gold-orange"></i><i
+                                                        class="fa fa-university fa-stack-1x fa-inverse"></i></span>External
+                                                Advisors</a>
+                                            <ul class="rd-navbar-dropdown" style="margin-top: 0;">
+                                                <!--put fmenu UL-->
+                                                <li><a href="https://www.tarc.edu.my/focs/external-advisors/external-examiners/"
+                                                        target="_self" style="cursor: pointer;" class="ja">External
+                                                        Examiners</a></li>
+                                                <li><a href="https://www.tarc.edu.my/focs/external-advisors/industrial-expert-advisory-panel-ieap--bd/"
+                                                        target="_self" style="cursor: pointer;" class="ja">Industrial
+                                                        Expert Advisory Panel (IEAP) - Bachelor Degree</a></li>
+                                                <li><a href="https://www.tarc.edu.my/focs/external-advisors/industrial-expert-advisory-panel-ieap/"
+                                                        target="_self" style="cursor: pointer;" class="ja">Industrial
+                                                        Expert Advisory Panel (IEAP) -Postgraduates Programmes</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class=""><a href="staffDirectory.aspx" target="_blank" class="ja"><span
+                                                    class="fa-stack fa-lg"><i
+                                                        class="fa fa-circle fa-stack-2x gold-orange"></i><i
+                                                        class="fa fa-users fa-stack-1x fa-inverse"></i></span>Our
+                                                Team</a></li>
+                                    </ul>
+                                    <div class="midSide">
+
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/39E9DDCE-6E61-4C29-9CB7-0EF12F0BADAC.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=D7C95C5D-41F2-4AEE-8BAB-9FA088FD13A6&fmenuid="
+                                            target="_blank">Why Choose Us</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=A714E192-1AFC-4032-83A2-4FC74F965841&fmenuid=CF0E0432-EB23-45D2-A8AC-0B4AD06AAD34"
+                                            target="_self">Programmes</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/0760A92C-042C-48C0-BD41-CC3C4114D34B.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=A66D390D-8C3E-4399-9751-E5B225DBFA82&fmenuid=43BF3FAA-5744-4E6E-953A-3EC6FD323749"
+                                            target="_blank">Collaboration Partners</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/478819E7-8DD4-4530-9EB1-EC45ABEAC2FC.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868"
+                                            target="_blank">Highlights</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/44F36855-E6F5-4415-9D8D-7D9F9BD9E4F6.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=D012DA8D-7016-4A88-8D2B-2A18658A1DC7&fmenuid=D5432296-3079-4749-A2B6-73511BC6028C"
+                                            target="_self">Recognition</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/61C7A072-9E3C-4AF3-BE59-62CA4CD974C9.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=59D98207-6215-4D6A-90BC-4F6F65A995B3&fmenuid=0676BE2A-C916-4C5C-A2E5-EA93D01528D3"
+                                            target="_self">Testimonials</a>
+                                        <br>
+                                    </div>
+                                    <div class="topbarSide">
+                                    </div>
+                                    <!-- END topbarSide -->
+
+
+                                </div>
+                                <!-- END rd-navbar-nav-inner -->
+                            </div>
+                            <!-- END rd-navbar-nav-wrap -->
+                        </div>
+                        <!-- END rd-navbar-group rd-navbar-search-wrap -->
+                    </div>
+                    <!-- END rd-navbar-inner -->
+
+
+
+
+
+                </nav>
+            </div>
+            <!-- END rd-navbar-wrap -->
+            <script type="text/javascript" src="assets/js/gs.js"></script>
+            <script>
+                setTimeout("resizeMenuText()", 1000);
+
+                function resizeMenuText() {
+                    //console.log("123:"+document.getElementById("navCon").children.length);
+                    const collection = document.getElementById("navCon").children;
+
+                    var menuWidth = 0;
+                    var strFontSize = "";
+                    var pageWidth = document.body.clientWidth;
+                    for (var i = 0; i < collection.length; i++) {
+                        //menuWidth+=collection[i].innerHTML.length;
+                        menuWidth += collection[i].clientWidth;
+                    }
+                    console.log("menuWidth:" + menuWidth);
+                    console.log("pageWidth:" + pageWidth);
+                    if (pageWidth >= 1200) {
+                        if (menuWidth > 900)
+                            strFontSize = "9.5px";
+                        if (menuWidth > 980)
+                            strFontSize = "9px";
+
+                        for (var i = 0; i < collection.length; i++) {
+                            document.getElementById("navCon").children[i].children[0].style.fontSize = strFontSize;
+                        }
+                    }
+                }
+            </script>
+
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+        </header>
+
+        <a href="https://api.whatsapp.com/send?phone=601110758554" class="float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+        </a>
+
+
+
+
+
+
+
+
+        <section>
+            <div data-loop="false" data-autoplay="7000" data-simulate-touch="true"
+                class="swiper-container swiper-slider swiper-variant-1 bg-gray-base" style="background: transparent;">
+                <div class="swiper-wrapper text-center">
+
+
+
+                    <div data-slide-bg="files/focs/37E888E7-0177-4026-9409-EF416E3827AB.png" class="swiper-slide">
+                        <div class="swiper-slide-caption">
+
+                            <div class="shell">
+                                <div class="range range-sm-center">
+                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
+                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
+                                            class="slider-header">Welcome to Faculty of Computing and Information
+                                            Technology (FOCS)</h3>
+                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
+                                            class="slider-text-animate" style="color: #FFF;">Select MORE INFO to watch
+                                            Faculty Video</span>
+                                        <br>
+
+                                        <span class="group-xl-responsive offset-top-30 offset-sm-top-45">
+                                            <!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
+                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
+                                                onclick="window.open('https://youtu.be/VbLIvaqQwpY','_blank');"
+                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
+                                                Info</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div data-slide-bg="files/focs/41521178-95BA-49DD-B191-F2C15418B3FC.jpg" class="swiper-slide">
+                        <div class="swiper-slide-caption">
+
+                            <div class="shell">
+                                <div class="range range-sm-center">
+                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
+                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
+                                            class="slider-header">TAR UMT officially Launches Centre Of Excellence For
+                                            BDA & AI</h3>
+                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
+                                            class="slider-text-animate" style="color: #FFF;">Riding the digital wave
+                                            that is sweeping every sector and industry in the age of Industry 4.0, TAR
+                                            UMT is forging ahead with the establishment of the Centre of Excellence for
+                                            Big Data Analytics and Artificial Intelligence (CoE) as well as Hero Esports
+                                            Arena on 12 January 2022</span>
+                                        <br>
+
+                                        <span class="group-xl-responsive offset-top-30 offset-sm-top-45">
+                                            <!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
+                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
+                                                onclick="window.open('https://www.tarc.edu.my/focs/news.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=ECF20A18-1334-4E97-87EE-27C0ED671DA8&news_id=FB7E6324-7CF0-4BE9-90BA-6F430E0C5404','_blank');"
+                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
+                                                Info</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div data-slide-bg="files/focs/2785EC98-6F23-4C4E-A109-6123227EDB97.jpg" class="swiper-slide">
+                        <div class="swiper-slide-caption">
+
+                            <div class="shell">
+                                <div class="range range-sm-center">
+                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
+                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
+                                            class="slider-header">TAR UMT Students Bag WorldSkills Top Prizes in Cloud
+                                            Computing, Cyber Security and Mobile App Dev pepepe</h3>
+                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
+                                            class="slider-text-animate" style="color: #FFF;">Displaying the highest
+                                            level of skill proficiency in their respective fields, TAR UMT students
+                                            managed to claim top prizes at the WorldSkills Asia Online Friendly Games
+                                            and Malaysia Belia 2021 competitions</span>
+                                        <br>
+
+                                        <span class="group-xl-responsive offset-top-30 offset-sm-top-45">
+                                            <!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
+                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
+                                                onclick="window.open('https://www.tarc.edu.my/focs/news.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868&news_id=B246ECA8-EBCE-4147-850B-ED6B9F8D3A84','_blank');"
+                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
+                                                Info</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div data-slide-bg="files/focs/6F89CD43-ADDD-46C6-B75D-3D135FF4605E.jpg" class="swiper-slide">
+                        <div class="swiper-slide-caption">
+
+                            <div class="shell">
+                                <div class="range range-sm-center">
+                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
+                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
+                                            class="slider-header">Advantech AIoT Developer InnoWorks Programme 2021</h3>
+                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
+                                            class="slider-text-animate" style="color: #FFF;">FOCS students were given
+                                            the Best Team Award for their innovative proposals on "Mask Detection, Area
+                                            Security, Social Distancing" and "Multi-Storey Robot Delivery System"</span>
+                                        <br>
+
+                                        <span class="group-xl-responsive offset-top-30 offset-sm-top-45">
+                                            <!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
+                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
+                                                onclick="window.open('https://www.tarc.edu.my/news.jsp?cat_id=56EBCDAD-D3D4-4D3B-8AC4-44CAF115AE1E&fmenuid=63470210-0077-4156-8326-47DE252878A7&news_id=28A833FE-4DDB-4EA9-A0EE-ECF72AEFEA3E','_blank');"
+                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
+                                                Info</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div data-slide-bg="files/focs/FE84E0BA-D6F5-49F8-B235-0D602D3CDDF2.jpg" class="swiper-slide">
+                        <div class="swiper-slide-caption">
+
+                            <div class="shell">
+                                <div class="range range-sm-center">
+                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
+                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
+                                            class="slider-header">Grooming Future Cyber Security Experts</h3>
+                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
+                                            class="slider-text-animate" style="color: #FFF;"></span>
+                                        <br>
+
+                                        <span class="group-xl-responsive offset-top-30 offset-sm-top-45">
+                                            <!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
+                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
+                                                onclick="window.open('https://www.tarc.edu.my/focs/news.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=ECF20A18-1334-4E97-87EE-27C0ED671DA8&news_id=9DBF7D64-E922-4BC2-8348-2B61BC56CB69','_blank');"
+                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
+                                                Info</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div data-slide-bg="files/focs/C385E5B1-6F90-421C-A7A3-2109A23C80A2.jpg" class="swiper-slide">
+                        <div class="swiper-slide-caption">
+
+                            <div class="shell">
+                                <div class="range range-sm-center">
+                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
+                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
+                                            class="slider-header">Next-gen Cyberspace Guardian</h3>
+                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
+                                            class="slider-text-animate" style="color: #FFF;"></span>
+                                        <br>
+
+                                        <span class="group-xl-responsive offset-top-30 offset-sm-top-45">
+                                            <!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
+                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
+                                                onclick="window.open('https://www.tarc.edu.my/focs/news.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=ECF20A18-1334-4E97-87EE-27C0ED671DA8&news_id=32B3D5DE-FF9A-4FBF-841D-BD99D11FDFD9','_blank');"
+                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
+                                                Info</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div data-slide-bg="files/focs/6B3B6A89-6E28-4FEF-A56E-968A3EE45634.png" class="swiper-slide">
+                        <div class="swiper-slide-caption">
+
+                            <div class="shell" style='background: none; padding-top: 12%;'>
+                                <div class="range range-sm-center">
+                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
+                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
+                                            class="slider-header"></h3>
+                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
+                                            class="slider-text-animate" style="color: #FFF;"></span>
+                                        <br>
+
+                                        <span class="group-xl-responsive offset-top-30 offset-sm-top-45">
+                                            <!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
+                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
+                                                onclick="window.open('https://www.tarc.edu.my/news.jsp?cat_id=56EBCDAD-D3D4-4D3B-8AC4-44CAF115AE1E&fmenuid=63470210-0077-4156-8326-47DE252878A7&news_id=6A24A605-7E69-4B8F-B177-A0214AC7902B','_blank');"
+                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
+                                                Info</a>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="swiper-scrollbar"></div>
+                <div class="swiper-nav-wrap">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
+        <div class="container grid-system">
+            <div class="row offset-top-50 offset-md-top-30 medbtn">
+
+                <div class="col-xs-6 col-md-2">
+                    <article class="icon-box icon-box-top-line">
+                        <div class="box-top">
+                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/why-choose-us/">
+                                    <img src="files/focs/39E9DDCE-6E61-4C29-9CB7-0EF12F0BADAC.png" width="50%"
+                                        style="min-width: 82px;"></a></div>
+                            <div class="box-header">
+                                <span style="font-size: 16px; font-weight: bold;"><a
+                                        href="https://www.tarc.edu.my/focs/a/why-choose-us/" target="_blank">Why Choose
+                                        Us </a></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+
+                <div class="col-xs-6 col-md-2">
+                    <article class="icon-box icon-box-top-line">
+                        <div class="box-top">
+                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/programmes/programmes/">
+                                    <img src="files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png" width="50%"
+                                        style="min-width: 82px;"></a></div>
+                            <div class="box-header">
+                                <span style="font-size: 16px; font-weight: bold;"><a
+                                        href="https://www.tarc.edu.my/focs/a/programmes/programmes/"
+                                        target="_self">Programmes </a></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+
+                <div class="col-xs-6 col-md-2">
+                    <article class="icon-box icon-box-top-line">
+                        <div class="box-top">
+                            <div class="box-icon"><a
+                                    href="https://www.tarc.edu.my/focs/a/collaboration-partners/academic-collaboration/">
+                                    <img src="files/focs/0760A92C-042C-48C0-BD41-CC3C4114D34B.png" width="50%"
+                                        style="min-width: 82px;"></a></div>
+                            <div class="box-header">
+                                <span style="font-size: 16px; font-weight: bold;"><a
+                                        href="https://www.tarc.edu.my/focs/a/collaboration-partners/academic-collaboration/"
+                                        target="_blank">Collaboration Partners </a></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+
+                <div class="col-xs-6 col-md-2">
+                    <article class="icon-box icon-box-top-line">
+                        <div class="box-top">
+                            <div class="box-icon"><a
+                                    href="https://www.tarc.edu.my/focs/news_archive.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868&ftype=subcontent">
+                                    <img src="files/focs/478819E7-8DD4-4530-9EB1-EC45ABEAC2FC.png" width="50%"
+                                        style="min-width: 82px;"></a></div>
+                            <div class="box-header">
+                                <span style="font-size: 16px; font-weight: bold;"><a
+                                        href="https://www.tarc.edu.my/focs/news_archive.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868&ftype=subcontent"
+                                        target="_blank">Highlights </a></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+
+                <div class="col-xs-6 col-md-2">
+                    <article class="icon-box icon-box-top-line">
+                        <div class="box-top">
+                            <div class="box-icon"><a
+                                    href="https://www.tarc.edu.my/focs/a/industry-relevant/tar-umt-awarded-premier-digital-tech-university-status-again/">
+                                    <img src="files/focs/44F36855-E6F5-4415-9D8D-7D9F9BD9E4F6.png" width="50%"
+                                        style="min-width: 82px;"></a></div>
+                            <div class="box-header">
+                                <span style="font-size: 16px; font-weight: bold;"><a
+                                        href="https://www.tarc.edu.my/focs/a/industry-relevant/tar-umt-awarded-premier-digital-tech-university-status-again/"
+                                        target="_self">Recognition </a></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+
+                <div class="col-xs-6 col-md-2">
+                    <article class="icon-box icon-box-top-line">
+                        <div class="box-top">
+                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/testimonials/focs-alumni/">
+                                    <img src="files/focs/61C7A072-9E3C-4AF3-BE59-62CA4CD974C9.png" width="50%"
+                                        style="min-width: 82px;"></a></div>
+                            <div class="box-header">
+                                <span style="font-size: 16px; font-weight: bold;"><a
+                                        href="https://www.tarc.edu.my/focs/a/testimonials/focs-alumni/"
+                                        target="_self">Testimonials </a></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+
+                <style>
+                    @media (min-width: 1200px) {
+                        .medbtn {
+                            margin-left: 0%;
+                        }
+                    }
+                </style>
+            </div>
+        </div>
+        <section>
+        </section>
+
+
+
+
+
+
+        <!-- basic scripts -->
+
+        <!--[if !IE]> -->
+        <script src="assets/js/jquery.js"></script>
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+<script src="assets/js/jquery1x.js"></script>
+<![endif]-->
+        <script type="text/javascript">
+            if ('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.js'>" + "<" + "/script>");
+        </script>
+        <!--checking in progress enabled by default<script src="assets/js/bootstrap.js"></script>-->
+
+        <!-- page specific plugin scripts -->
+
+        <!-- ace scripts -->
+        <script src="assets/js/ace/elements.scroller.js"></script>
+        <script src="assets/js/ace/elements.colorpicker.js"></script>
+        <script src="assets/js/ace/elements.fileinput.js"></script>
+        <script src="assets/js/ace/elements.typeahead.js"></script>
+        <script src="assets/js/ace/elements.wysiwyg.js"></script>
+        <script src="assets/js/ace/elements.spinner.js"></script>
+        <script src="assets/js/ace/elements.treeview.js"></script>
+        <script src="assets/js/ace/elements.wizard.js"></script>
+        <script src="assets/js/ace/elements.aside.js"></script>
+
+        <script src="assets/js/ace/ace.ajax-content.js"></script>
+        <script src="assets/js/ace/ace.touch-drag.js"></script>
+        <script src="assets/js/ace/ace.sidebar.js"></script>
+        <script src="assets/js/ace/ace.sidebar-scroll-1.js"></script>
+        <script src="assets/js/ace/ace.submenu-hover.js"></script>
+        <script src="assets/js/ace/ace.widget-box.js"></script>
+        <script src="assets/js/ace/ace.settings.js"></script>
+        <script src="assets/js/ace/ace.settings-rtl.js"></script>
+        <script src="assets/js/ace/ace.settings-skin.js"></script>
+        <script src="assets/js/ace/ace.widget-on-reload.js"></script>
+        <script src="assets/js/ace/ace.searchbox-autocomplete.js"></script>
+
+        <!-- inline scripts related to this page -->
+        <div class="gcse-searchresults"></div>
+        <section class="separator">
+            <div class="text-sm-center">
+                <div class="group-sm group-middle">
+                    <ul class="list-inline list-inline-reset">
+                        <li><a target="_blank" href="https://www.facebook.com/tarumtkl"
+                                class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest fa fa-facebook"></a>
+                        </li>
+                        <li><a target="_blank" href="https://www.youtube.com/channel/UCqjsPpVnwjCRT5mgAgFo1ng"
+                                class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest fa fa-youtube"></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com/tarumt.official/"
+                                class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest">
+                                <img src="images/instagram-2.png" /></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-40 section-sm-60 bg-cod-gray">
+            <div class="shell">
+                <div class="range range-xs-center">
+                    <div class="cell-xs-10 cell-sm-11 cell-md-12">
+                        <div class="range">
+                            <div class="cell-sm-6 cell-md-4">
+                                <div class="inset-md-right-30">
+                                    <h6 class="text-uppercase">Contact Us</h6>
+                                    <p class="offset-top-22 small">
+                                        <br />
+                                        <strong>FACULTY OF COMPUTING AND INFORMATION TECHNOLOGY</strong><br />
+                                        TUNKU ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY<br />
+                                        JALAN GENTING KELANG<br />
+                                        SETAPAK
+                                        <br />
+                                        53300 KUALA LUMPUR<br />
+                                        <br />
+                                        TELEPHONE: 603-41450123 Ext no. 3233<br />
+                                        MOBILE PHONE: 6011-10758554<br />
+                                        FAX: 603-41423166 / 018 925 1001<br />
+                                        EMAIL : focs@tarc.edu.my<br />
+                                        <br />
+                                        OPENING HOURS<br />
+                                        8.30am - 5.30pm (Monday - Friday)
+                                    </p>
+                                </div>
+                                <div class="offset-top-22">
+                                    <div class="group-md group-top">
+                                        <div>
+                                            <!--ul class="list-inline list-inline-reset">
+                          <li><a href="#" class="icon icon-round icon-gray-dark-filled icon-xxs-smallest fa fa-facebook"></a></li>
+                          <li><a href="#" class="icon icon-round icon-gray-dark-filled icon-xxs-smallest fa fa-twitter"></a></li>
+                        </ul-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell-sm-6 cell-md-4 offset-top-50 offset-sm-top-0">
+                                <h6 class="text-uppercase">Map to TAR UMT</h6>
+                                <div style="max-width: 340px;" class="row offset-top-22 offset-md-top-30">
+                                    <div class="col-xs-12">
+                                        <iframe style="width: 100%;"
+                                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3983.5380217035718!2d101.7285053941956!3d3.2152015485914953!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2dc5e067aae3ab84!2sTunku+Abdul+Rahman+University+College!5e0!3m2!1sen!2sus!4v1436418290470"
+                                            width="100%" height="300" frameborder="0" allowfullscreen=""></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell-sm-6 cell-md-4 offset-top-50 offset-md-top-0">
+                                <!--<h6 class="text-uppercase">General / Programme Enquiry</h6>-->
+                                <!--<div class="range">
+                  <form class="rd-mailform form-classic form-inline offset-top-15"%>
+                  <div class="cell-sm-6">
+                    <div class="form-group has-error">
+                      <input id="feedback-2-first-name" type="text" name="first-name" data-constraints="@Required" class="form-control form-control-has-validation"><span class="form-validation">The text field is required.</span>
+                      <label for="feedback-2-first-name" class="form-label rd-input-label">First Name</label>
+                    </div>
+                  </div>
+                  <div class="cell-sm-6 offset-top-30 offset-sm-top-0">
+                    <div class="form-group">
+                      <input id="feedback-2-last-name" type="text" name="last-name" data-constraints="@Required" class="form-control form-control-has-validation"><span class="form-validation"></span>
+                      <label for="feedback-2-last-name" class="form-label rd-input-label">Last Name</label>
+                    </div>
+                  </div>
+                  <div class="cell-sm-6 offset-top-30">
+                    <div class="form-group has-error">
+                      <input id="feedback-2-email" type="email" name="email" data-constraints="@Email @Required" class="form-control form-control-has-validation"><span class="form-validation">The email is required.</span>
+                      <label for="feedback-2-email" class="form-label rd-input-label">Email</label>
+                    </div>
+                  </div>
+                  <div class="cell-sm-6 offset-top-30">
+                    <div class="form-group has-error">
+                      <input id="feedback-2-phone" type="text" name="phone" data-constraints="@Numeric @Required" class="form-control form-control-has-validation"><span class="form-validation">The text field is required.</span>
+                      <label for="feedback-2-phone" class="form-label rd-input-label">Phone</label>
+                    </div>
+                  </div>
+                  <div class="cell-xs-12 offset-top-30">
+                    <div class="form-group">
+                      <textarea id="feedback-2-message" name="message" data-constraints="@Required" class="form-control form-control-has-validation"></textarea><span class="form-validation"></span>
+                      <label for="feedback-2-message" class="form-label rd-input-label">Message</label>
+                    </div>
+                  </div>
+                  <div class="cell-sm-6 offset-top-30 offset-sm-top-50">
+                    <button type="submit" class="btn btn-primary-outline btn-block">Send</button>
+                  </div>
+                  </form>
+                </div>-->
+                                <div class="offset-top-22 offset-md-top-30">
+                                    <!--<form data-form-output="form-output-global" data-form-type="contact" method="post" action="rd-mailform.jsp" class="rd-mailform form-modern offset-top-30" novalidate onsubmit="return checkfields();">
+                      <div class="form-group">
+                        <input id="contact-name" type="name" name="fname" data-constraints="@Required" class="form-control form-control-has-validation"><span class="form-validation"></span>
+                        <label for="contact-name" class="form-label rd-input-label">Your Name</label>
+                      </div>
+                      <div class="form-group">
+                        <input id="contact-email" type="email" name="femail" data-constraints="@Email @Required" class="form-control form-control-has-validation"><span class="form-validation"></span>
+                        <label for="contact-email" class="form-label rd-input-label">E-mail Address</label>
+                      </div>
+                      <div class="form-group">
+                        <input id="contact-email-add" type="email" name="femail_add" class="form-control form-control-has-validation"><span class="form-validation"></span>
+                        <label id="contact-email-add-label" for="contact-email-add" class="form-label rd-input-label">E-mail Address</label>
+                      </div>
+                      <div class="form-group">
+                        <input id="contact-phone" type="phone" name="fphone" data-constraints="@Numeric @Required" class="form-control form-control-has-validation"><span class="form-validation"></span>
+                        <label for="contact-phone" class="form-label rd-input-label">Phone Number</label>
+                      </div>
+                      
+                     <div class="form-group">
+                        <input id="contact-subject" type="subject" name="fsubject" data-constraints="@Required" class="form-control form-control-has-validation"><span class="form-validation"></span>
+                        <label for="contact-subject" class="form-label rd-input-label">Subject</label>
+                      </div>
+                      
+                      <div class="form-group">
+                      <textarea id="feedback-message" name="fcontent" data-constraints="@Required" class="form-control form-control-has-validation"></textarea>
+                      <label for="feedback-message" class="form-label rd-input-label">Write Your Message Here...</label>
+                      <div class="g-recaptcha" data-sitekey="6LflNigUAAAAAELglQuoz54cU8AebGsQ-vlm53uN"></div>
+                       <span id="captcha" style="color:red" ></span>
+                      <input type="hidden" name="fkey" value="vC48lunaKU6NL0Wx0B1Y4DH4zaZQ4tIQ" />
+                      <button type="submit" aria-label="Subscribe" class="btn btn-icon-only btn-primary"><span class="icon icon-xs icon-white fa-envelope-o"></span></button>                      
+                      </div>
+                    </form>-->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="page-foot page-foot-default section-35 bg-gray-base">
+            <div class="shell">
+                <div class="range text-center">
+                    <div class="cell-xs-12">
+                        <p class="small" align="center">
+                            <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
+                                        href="https://www.tarc.edu.my/disclaimer.jsp"
+                                        class="link-primary-inverse">Disclaimer</a>
+                                    <a href="https://www.tarc.edu.my/privacy-policy.jsp"
+                                        class="link-primary-inverse">Privacy Policy</a>
+                                    and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
+                                        target="_new">ABAC Policy</a>
+                                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <div id="form-output-global" class="snackbars"></div>
+    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
+                    <button title="Share" class="pswp__button pswp__button--share"></button>
+                    <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
+                    <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
+                <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__cent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/core.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/ace/ace.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(
+            function () {
+                $('#contact-email-add').hide()
+                $('#contact-email-add-label').hide()
+            }
+        );
+
+        function checkfields(thisForm) {
+
+            var captcha_response = grecaptcha.getResponse();
+
+
+            if (captcha_response.length == 0) {
+
+                document.getElementById('captcha').innerHTML = "You must tick reCAPTCHA checkbox.<br>";
+                return false;
+
+            } else {
+
+                document.getElementById('captcha').innerHTML = "";
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
