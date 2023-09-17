@@ -221,15 +221,15 @@
                     <form action="/submitContactUs" method="POST">
                         <span class="title">Contact Us</span>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput1" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="floatingInput1" placeholder="name@example.com" required>
                             <label for="floatingInput1">Enter your email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput2" placeholder="Your Name">
+                            <input type="text" class="form-control" id="floatingInput2" placeholder="Your Name" required>
                             <label for="floatingInput2">Enter your name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="categorySelect" name="category">
+                            <select class="form-select" id="categorySelect" name="category" required>
                                 <option value="general">General Inquiry</option>
                                 <option value="admissions">Admissions</option>
                                 <option value="courses">Courses and Curriculum</option>
@@ -241,7 +241,7 @@
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control" id="floatingTextarea" placeholder="Enter your inquiries"
-                                style="height: 150px;"></textarea>
+                                style="height: 150px;" required></textarea>
                             <label for="floatingTextarea">Enter your inquiries</label>
                         </div>
                         <div class="submit-button">
@@ -252,8 +252,9 @@
 
                 <div class="feedback-details">
                     <!-- Google Maps Embed API -->
-                    <iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                        src="https://www.google.com/maps/place/Tunku+Abdul+Rahman+University+of+Management+and+Technology+(TAR+UMT)/@3.2152552,101.7239822,17z/data=!4m10!1m2!2m1!1sTAR+UMT!3m6!1s0x31cc3843bfb6a031:0x2dc5e067aae3ab84!8m2!3d3.2152552!4d101.7265571!15sCgdUQVIgVU1UIgOIAQGSAQp1bml2ZXJzaXR54AEA!16s%2Fm%2F025z3fz?entry=ttu"></iframe>
+                    <iframe style="width: 100%;"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3983.5380217035718!2d101.7285053941956!3d3.2152015485914953!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2dc5e067aae3ab84!2sTunku+Abdul+Rahman+University+College!5e0!3m2!1sen!2sus!4v1436418290470"
+                        width="100%" height="300" frameborder="0" allowfullscreen=""></iframe>
 
                     <div class="contact-info">
                         <!-- Address -->
