@@ -34,7 +34,7 @@ def index():
     return render_template('home.html', number=1)
 
 
-@app.route('/')
+@app.route('/contactUs')
 def contact_us():
     try:
         # Get the user's IP address from the request object
