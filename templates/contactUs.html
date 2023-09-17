@@ -5,7 +5,8 @@
 <head runat="server">
     <title>Tunku Abdul Rahman University of Management & Technology - Faculty of Computing and Information Technology
     </title>
-    <meta name="format-detection" content="telephone=no">
+    <!-- UNCOMMENT THIS SECTION -->
+    <!-- <meta name="format-detection" content="telephone=no">
     <meta name="viewport"
         content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +16,7 @@
     <meta name="description"
         content="Tunku Abdul Rahman University of Management and Technology is a distinguished institution of higher learning acknowleged locally, nationally and globally for its excellence in providing opportunities for intellectual, personal and professional development.">
 
-    <link rel="icon" href="images/tarIco.ico" type="image/x-icon">
+    <link rel="icon" href="images/tarIco.ico" type="image/x-icon"> -->
 
     <!-- bootstrap & fontawesome -->
 
@@ -23,11 +24,11 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" />
 
 
     <!-- page specific plugin styles -->
-
-
 
     <!--link rel="stylesheet" href="assets/css/jquery-ui.custom.css" /-->
 
@@ -67,7 +68,8 @@
 		<![endif]-->
 
 
-    <link rel="stylesheet" type="text/css"
+    <!-- UNCOMMENT THIS SECTION -->
+    <!-- <link rel="stylesheet" type="text/css"
         href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,400italic,700,900%7CPlayfair+Display:700italic,900">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -75,7 +77,7 @@
 
 
     <link rel="stylesheet" href="assets/css/gold-orange.css?d=2023/08/27 19:06:45">
-    <link rel="stylesheet" href="assets/css/custom.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" /> -->
 
     <!--[if lt IE 10]>
     		<div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -83,7 +85,118 @@
 		<![endif]-->
 
     <style>
+        /* Apply a background color and set text color */
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
+        body {
+            background-color: #f8f9fa;
+            /* Light gray background */
+            color: #333;
+            /* Dark text color */
+            font-family: Arial, sans-serif;
+            /* Use a common sans-serif font */
+        }
+
+        /* Center the content vertically and horizontally */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Ensure the container covers the viewport height */
+        }
+
+        .section {
+            margin: 30px 0;
+
+        }
+
+        .feedback-section {
+            margin: 30px 0;
+            width: 90%;
+        }
+
+        .section h1 {
+            text-transform: capitalize;
+            font-size: 50px;
+        }
+
+        .section .description {
+            font-size: 16px;
+            color: #aaa;
+        }
+
+        /* Style the feedback box */
+        .feedback-box {
+            background-color: #fff;
+            /* White background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            /* Add a subtle shadow */
+        }
+
+        /* Two-column layout */
+        .feedback-box {
+            display: flex;
+        }
+
+        /* Style the left column (form) */
+        .feedback-form {
+            flex: 1;
+            /* Take up 50% of the container width */
+            padding-right: 20px;
+            /* Add spacing between columns */
+        }
+
+        .feedback-form .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Style the form elements */
+        .form-floating {
+            margin: 15px 0;
+        }
+
+        /* Add custom styles for labels */
+        .form-floating label {
+            font-size: 14px;
+        }
+
+        /* Style the textarea */
+        .form-floating textarea {
+            height: 150px;
+            /* Set the desired height for the textarea */
+        }
+
+        /* Style the right column (contact details) */
+        .feedback-details {
+            flex: 1;
+            /* Take up 50% of the container width */
+            background-color: #f0f0f0;
+            /* Light gray background for contact details */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            /* Add a subtle shadow */
+        }
+
+        /* Style the contact details text or icons as needed */
+        .contact-text {
+            font-size: 16px;
+        }
+
+        .submit-button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -93,15 +206,85 @@
     <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
     <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p> -->
     <div class="container">
-        <div class="feedback-box">
-            <div class="feedback-form">
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
-                </div>
-            </div>
+        <div class="section">
+            <h1>We'd love to hear from you</h1>
+        </div>
 
-            <div class="contact-details">
+        <div class="section">
+            <span class="description">Whether you're curious or have any kind of academic enquiries. We are ready to
+                answer any and all questions</span>
+        </div>
+
+        <div class="feedback-section">
+            <div class="feedback-box">
+                <div class="feedback-form">
+                    <form action="/submitContactUs" method="POST">
+                        <span class="title">Contact Us</span>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput1" placeholder="name@example.com">
+                            <label for="floatingInput1">Enter your email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput2" placeholder="Your Name">
+                            <label for="floatingInput2">Enter your name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="categorySelect" name="category">
+                                <option value="general">General Inquiry</option>
+                                <option value="admissions">Admissions</option>
+                                <option value="courses">Courses and Curriculum</option>
+                                <option value="events">Events and Workshops</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <label for="categorySelect">Select a Category</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="floatingTextarea" placeholder="Enter your inquiries"
+                                style="height: 150px;"></textarea>
+                            <label for="floatingTextarea">Enter your inquiries</label>
+                        </div>
+                        <div class="submit-button">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="feedback-details">
+                    <!-- Google Maps Embed API -->
+                    <iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                        src="https://www.google.com/maps/place/Tunku+Abdul+Rahman+University+of+Management+and+Technology+(TAR+UMT)/@3.2152552,101.7239822,17z/data=!4m10!1m2!2m1!1sTAR+UMT!3m6!1s0x31cc3843bfb6a031:0x2dc5e067aae3ab84!8m2!3d3.2152552!4d101.7265571!15sCgdUQVIgVU1UIgOIAQGSAQp1bml2ZXJzaXR54AEA!16s%2Fm%2F025z3fz?entry=ttu"></iframe>
+
+                    <div class="contact-info">
+                        <!-- Address -->
+                        <div class="contact-detail">
+                            <div class="icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="text">
+                                <strong>Address:</strong> 123 Main Street, City, Country
+                            </div>
+                        </div>
+                        <!-- Contact Number -->
+                        <div class="contact-detail">
+                            <div class="icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="text">
+                                <strong>Contact Number:</strong> +1 (123) 456-7890
+                            </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="contact-detail">
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="text">
+                                <strong>Email:</strong> contact@example.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
