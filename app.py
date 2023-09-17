@@ -7,7 +7,7 @@ from pymysql import connections
 import boto3
 from config import *
 import datetime
-import logging
+import logging, socket
 
 app = Flask(__name__)
 app.static_folder = 'static'  # The name of your static folder
@@ -33,30 +33,31 @@ table = 'focsWebsite'
 def index():
     return render_template('home.html', number=1)
 
+# N8 - Retrieve network details
+def get_network_details():
+    try:
+        # Get the host name of the local machine
+        host_name = socket.gethostname()
+
+        # Get both IPv4 and IPv6 addresses associated with the host
+        ipv4_address = socket.gethostbyname(host_name)
+        ipv6_address = socket.getaddrinfo(host_name, None, socket.AF_INET6)[0][4][0]
+
+        return {
+            'Host Name': host_name,
+            'IPv4 Address': ipv4_address,
+            'IPv6 Address': ipv6_address
+        }
+    except Exception as e:
+        return {'Error': str(e)}
 
 @app.route('/contactUs')
 def contact_us():
-    try:
-        # Get the user's IP address from the request object
-        user_ip = request.remote_addr
+    # Call the get_network_details function to retrieve network details
+    network_details = get_network_details()
 
-        # Get the user agent information from the request object
-        user_agent = request.headers.get('User-Agent')
-
-        # Get the client's host name using socket
-        import socket
-        host_name = socket.gethostbyaddr(user_ip)[0]
-
-        # Log the details for debugging and auditing
-        logging.info(
-            f'User IP: {user_ip}, User-Agent: {user_agent}, Host Name: {host_name}')
-
-        return render_template('contactUs.html', user_ip=user_ip, user_agent=user_agent, host_name=host_name)
-
-    except Exception as e:
-        # Log any errors or exceptions
-        logging.error(f'Error occurred: {str(e)}')
-        return render_template('error.html', error_message='An error occurred. Please try again later.')
+    # Pass the network_details to the contactUs.html template
+    return render_template('contactUs.html', network_details=network_details)
 
 
 if __name__ == '__main__':
