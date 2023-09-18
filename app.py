@@ -61,7 +61,7 @@ def contact_us():
     network_details = get_network_details()
 
     # Pass the network_details to the contactUs.html template
-    return render_template('contactUs.html', network_details=network_details)
+    return render_template('contactUs.html', network_details=network_details, sendSuccessful=0)
 
 
 @app.route('/submitContactUs')
