@@ -91,7 +91,7 @@ def submitContactUs():
         return str(e)
 
 
-@app.route('/adminLogin', methods=['POST', 'GET'])
+@app.route('/adminLogin')
 def adminLogin():
     return render_template('adminLogin.html')
 
