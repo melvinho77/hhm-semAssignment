@@ -101,7 +101,7 @@ def adminContactUs():
     password = request.form.get('password')
 
     try:
-        total_sql = "SELECT COUNT(*) FROM request"
+        total_sql = "SELECT COUNT(*) FROM contact"
         cursor = db_conn.cursor()
         cursor.execute(total_sql)
         total_requests = cursor.fetchone()
@@ -141,7 +141,6 @@ def adminContactUs():
     else:
         error_msg = 'Invalid email or password. Please try again.'
         return render_template('adminLogin.html', msg=error_msg)
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
