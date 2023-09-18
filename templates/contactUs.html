@@ -327,6 +327,13 @@
                 </button>
                 {{ msg }}
             </div>
+            {{ else }}
+            <!-- Hide the success message if the msg variable is empty -->
+            <style>
+                .alert-success {
+                    display: none;
+                }
+            </style>
             {{ endif }}
             <div class="feedback-box">
                 <div class="feedback-form">

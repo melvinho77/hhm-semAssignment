@@ -55,18 +55,21 @@ def get_network_details():
         return {'Error': str(e)}
 
 
-@app.route('/contactUs')
+@app.route("/contactUs")
 def contact_us():
     # Call the get_network_details function to retrieve network details
     network_details = get_network_details()
 
-    # Pass the network_details to the contactUs.html template
-    return render_template('contactUs.html', network_details=network_details)
+    # Set the msg variable to empty
+    session["msg"] = ""
+
+    # Pass the network_details and msg to the contactUs.html template
+    return render_template("contactUs.html", network_details=network_details, msg=session["msg"])
 
 
 @app.route('/submitContactUs')
 def submitContactUs():
-    #After log in, then only can ask question
+    # After log in, then only can ask question
     student_id = request.form.get('student_id')
     student_name = request.form.get('student_name')
     category = request.form.get('category')
@@ -76,14 +79,16 @@ def submitContactUs():
         insert_sql = "INSERT INTO contact (`status`, category, question, reply, repliedBy, student) VALUES (%s, %s, %s, %s, %s, %s)"
         cursor = db_conn.cursor()
 
-        cursor.execute(insert_sql, ('pending', category, inquiries, None, None, student_id))
+        cursor.execute(insert_sql, ('pending', category,
+                       inquiries, None, None, student_id))
         db_conn.commit()
 
     except Exception as e:
         db_conn.rollback()
         return str(e)
-    
+
     return render_template('contactUs.html', student_id=session['loggedInStudent'], msg='Question submitted successfully.')
-    
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
