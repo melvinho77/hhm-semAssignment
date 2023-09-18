@@ -3,6 +3,7 @@ from flask import redirect, flash
 import mimetypes
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from botocore.exceptions import ClientError
+from flask_sqlalchemy import Pagination
 from pymysql import connections
 import boto3
 from config import *
@@ -115,7 +116,7 @@ def adminContactUs():
         page = request.args.get('page', 1, type=int)
 
         # Paginate the contact details
-        contact_details = contactDetails.paginate(page=page, per_page=per_page)
+        contact_details = Pagination(None, page, per_page, len(contactDetails), contactDetails)
 
     except Exception as e:
         db_conn.rollback()
@@ -134,7 +135,6 @@ def adminContactUs():
     else:
         error_msg = 'Invalid email or password. Please try again.'
         return render_template('adminLogin.html', msg=error_msg)
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
