@@ -277,6 +277,31 @@
         .table td:nth-child(5) {
             width: 10%;
         }
+
+        /* Center the pagination and add spacing between page numbers */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            /* Adjust the margin as needed */
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            /* Adjust the spacing between page numbers */
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .pagination .active {
+            background-color: #007BFF;
+            /* Change the background color of the active page number */
+            color: #fff;
+            /* Change the text color of the active page number */
+        }
     </style>
 </head>
 
