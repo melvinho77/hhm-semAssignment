@@ -89,9 +89,32 @@ def submitContactUs():
     except Exception as e:
         db_conn.rollback()
         return str(e)
+    
+@app.route('/adminLogin', methods=['POST'])
+def adminLogin():
+    return render_template('adminLogin.html')
 
-    return render_template('contactUs.html', student_id=session['loggedInStudent'])
+@app.route('/adminViewContactUs', methods=['POST'])
+def adminContactUs():
+    email = request.form.get('email')
+    password = request.form.get('password')
 
+    if email == 'hhm@gmail.com' and password == '123':
+        session['name'] = 'Ho Hong Meng'
+        session['loggedIn'] = 'hhm'
+        return render_template('adminContactUs.html', name=session['name'])
+
+    elif email == 'css@gmail.com' and password == '456':
+        session['name'] = 'Cheong Soo Siew'
+        session['loggedIn'] = 'css'
+        return render_template('adminContactUs.html', name=session['name'])
+
+    else:
+        error_msg = 'Invalid email or password. Please try again.'
+        return render_template('adminLogin.html', msg=error_msg)
+
+# @app.route('/adminViewContact', methods=['POST'])
+# def adminViewContact():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
