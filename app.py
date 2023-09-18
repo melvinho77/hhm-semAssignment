@@ -88,10 +88,12 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
 
-@app.route('/adminLogin', methods=['GET', 'POST'])
+
+@app.route('/adminLogin')
 def adminLogin():
     network_details = get_network_details()
     return render_template('adminLogin.html', network_details=network_details)
+
 
 @app.route('/adminContactUs')
 def adminContactUs():
@@ -157,6 +159,7 @@ def adminContactUs():
         num_pages=num_pages,
         network_details=network_details
     )
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
