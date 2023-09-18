@@ -59,10 +59,9 @@ def get_network_details():
 def contact_us():
     # Call the get_network_details function to retrieve network details
     network_details = get_network_details()
-    sendSuccessful = 0
 
     # Pass the network_details to the contactUs.html template
-    return render_template('contactUs.html', network_details=network_details, sendSuccessful=sendSuccessful)
+    return render_template('contactUs.html', network_details=network_details)
 
 
 @app.route('/submitContactUs')
