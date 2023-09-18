@@ -93,7 +93,8 @@ def submitContactUs():
 
 @app.route('/adminLogin')
 def adminLogin():
-    return render_template('adminLogin.html')
+    network_details = get_network_details()
+    return render_template('adminLogin.html', network_details=network_details)
 
 
 @app.route('/adminContactUs', methods=['POST'])
