@@ -61,10 +61,10 @@ def contact_us():
     network_details = get_network_details()
 
     # Set the msg variable to empty
-    session["msg"] = ""
+    msg = ""
 
     # Pass the network_details and msg to the contactUs.html template
-    return render_template("contactUs.html", network_details=network_details, msg=session["msg"])
+    return render_template("contactUs.html", network_details=network_details, msg=msg)
 
 
 @app.route('/submitContactUs')
@@ -86,8 +86,10 @@ def submitContactUs():
     except Exception as e:
         db_conn.rollback()
         return str(e)
+    
+    msg='Question submitted successfully.'
 
-    return render_template('contactUs.html', student_id=session['loggedInStudent'], msg='Question submitted successfully.')
+    return render_template('contactUs.html', student_id=session['loggedInStudent'], msg=msg)
 
 
 if __name__ == '__main__':
