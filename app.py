@@ -7,7 +7,8 @@ from pymysql import connections
 import boto3
 from config import *
 import datetime
-import logging, socket
+import logging
+import socket
 
 app = Flask(__name__)
 app.static_folder = 'static'  # The name of your static folder
@@ -31,9 +32,10 @@ table = 'focsWebsite'
 
 @app.route('/')
 def index():
-    return render_template('home.html', number=1)
+    network_details = get_network_details()
+    return render_template('home.html', number=1, network_details=network_details)
 
-# N8 - Retrieve network details
+
 def get_network_details():
     try:
         # Get the host name of the local machine
@@ -41,7 +43,8 @@ def get_network_details():
 
         # Get both IPv4 and IPv6 addresses associated with the host
         ipv4_address = socket.gethostbyname(host_name)
-        ipv6_address = socket.getaddrinfo(host_name, None, socket.AF_INET6)[0][4][0]
+        ipv6_address = socket.getaddrinfo(
+            host_name, None, socket.AF_INET6)[0][4][0]
 
         return {
             'Host Name': host_name,
@@ -50,6 +53,7 @@ def get_network_details():
         }
     except Exception as e:
         return {'Error': str(e)}
+
 
 @app.route('/contactUs')
 def contact_us():
@@ -60,5 +64,26 @@ def contact_us():
     return render_template('contactUs.html', network_details=network_details)
 
 
+@app.route('/submitContactUs')
+def submitContactUs():
+    #After log in, then only can ask question
+    student_id = request.form.get('student_id')
+    student_name = request.form.get('student_name')
+    category = request.form.get('category')
+    inquiries = request.form.get('inquiries')
+
+    try:
+        insert_sql = "INSERT INTO contact (`status`, category, question, reply, repliedBy, student) VALUES (%s, %s, %s, %s, %s, %s)"
+        cursor = db_conn.cursor()
+
+        cursor.execute(insert_sql, ('pending', category, inquiries, None, None, student_id))
+        db_conn.commit()
+
+    except Exception as e:
+        db_conn.rollback()
+        return str(e)
+    
+    return render_template('contactUs.html', student_id=session['loggedInStudent'], msg='Question submitted successfully.')
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

@@ -106,6 +106,7 @@
             flex-direction: column;
             justify-content: center;
             min-height: 100vh;
+            margin-bottom: 40px;
             /* Ensure the container covers the viewport height */
         }
 
@@ -318,25 +319,29 @@
         </div>
 
         <div class="feedback-section">
+            <div class="alert alert-success" style="padding: 10px; width: 20%; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                {{ msg }}
+            </div>
             <div class="feedback-box">
                 <div class="feedback-form">
+
                     <form action="/submitContactUs" method="POST">
                         <div class="form-header">
                             <span class="title">Contact Us</span>
                             <a href="/trackContactUs" target="_blank">View asked questions</a>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput1" placeholder="name@example.com"
-                                required>
+                            <input type="text" class="form-control" id="floatingInput1"
+                                placeholder="Enter your student id (in numbers only)" required name="student_id">
                             <label for="floatingInput1">Enter your id</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput2" placeholder="Your Name"
-                                required>
-                            <label for="floatingInput2">Enter your programme</label>
+                            <input type="text" class="form-control" id="floatingInput2" placeholder="Enter your name"
+                                required name="student_name">
+                            <label for="floatingInput2">Enter your name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="categorySelect" name="category" required>
+                            <select class="form-select" id="categorySelect" name="category" required name="category">
                                 <option value="general">General Inquiry</option>
                                 <option value="admissions">Admissions</option>
                                 <option value="courses">Courses and Curriculum</option>
@@ -348,7 +353,7 @@
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control" id="floatingTextarea" placeholder="Enter your inquiries"
-                                style="height: 200px;" required></textarea>
+                                style="height: 200px;" required name="inquiries"></textarea>
                             <label for="floatingTextarea">Enter your inquiries</label>
                         </div>
                         <div class="submit-button">
@@ -409,6 +414,35 @@
             </div>
         </div>
     </div>
+
+    <footer class="page-foot page-foot-default section-35 bg-gray-base">
+        <div class="shell">
+            <!-- req 8 -->
+            <div class="trackIp" style="font-size: 12px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;">
+                <p>Host Name: {{ network_details['Host Name'] }}</p>
+                <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+                <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
+            </div>
+            <div class="range text-center">
+                <div class="cell-xs-12">
+                    <p class="small" align="center">
+                        <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
+                                    href="https://www.tarc.edu.my/disclaimer.jsp"
+                                    class="link-primary-inverse">Disclaimer</a>
+                                <a href="https://www.tarc.edu.my/privacy-policy.jsp"
+                                    class="link-primary-inverse">Privacy Policy</a>
+                                and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
+                                    target="_new">ABAC Policy</a>
+                            </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
