@@ -95,7 +95,7 @@ def submitContactUs():
 def adminLogin():
     return render_template('adminLogin.html')
 
-@app.route('/adminViewContactUs', methods=['POST'])
+@app.route('/adminContactUs', methods=['POST'])
 def adminContactUs():
     email = request.form.get('email')
     password = request.form.get('password')
