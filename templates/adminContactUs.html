@@ -335,7 +335,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for contact in contact_details.items %}
+                                {% for contact in contact_details %}
                                 <tr>
                                     <td>{{ contact[6] }}</td>
                                     <td>{{ contact[2] }}</td>
@@ -361,7 +361,6 @@
                             <a href="{{ url_for('adminContactUs', page=num_pages) }}" class="next" {% if
                                 current_page==num_pages or num_pages==0 %}style="display:none;" {% endif %}>Next</a>
                         </div>
-
                     </div>
                 </div>
             </div>
