@@ -88,13 +88,12 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
 
-
-@app.route('/adminLogin')
+@app.route('/adminLogin', methods=['GET', 'POST'])
 def adminLogin():
     network_details = get_network_details()
     return render_template('adminLogin.html', network_details=network_details)
 
-
+@app.route('/adminContactUs')
 def adminContactUs():
     # Check if the user is logged in as admin
     if 'loggedIn' not in session or (session['loggedIn'] != 'hhm' and session['loggedIn'] != 'css'):
