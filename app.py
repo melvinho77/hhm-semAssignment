@@ -3,12 +3,9 @@ from flask import redirect, flash
 import mimetypes
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from botocore.exceptions import ClientError
-from flask_sqlalchemy import Pagination
 from pymysql import connections
 import boto3
 from config import *
-import datetime
-import logging
 import socket
 
 app = Flask(__name__)
