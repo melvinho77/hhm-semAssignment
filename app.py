@@ -59,9 +59,10 @@ def get_network_details():
 def contact_us():
     # Call the get_network_details function to retrieve network details
     network_details = get_network_details()
+    sendSuccessful = 0
 
     # Pass the network_details to the contactUs.html template
-    return render_template('contactUs.html', network_details=network_details, sendSuccessful=0)
+    return render_template('contactUs.html', network_details=network_details, sendSuccessful=sendSuccessful)
 
 
 @app.route('/submitContactUs')
@@ -83,7 +84,7 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
     
-    return render_template('contactUs.html', student_id=session['loggedInStudent'], msg='Question submitted successfully.', sendSucessful=1)
+    return render_template('contactUs.html', student_id=session['loggedInStudent'], msg='Question submitted successfully.')
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
