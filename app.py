@@ -103,7 +103,7 @@ def adminContactUs():
     try:
         total_sql = "SELECT COUNT(*) FROM request"
         cursor = db_conn.cursor()
-        cursor.execute(select_sql)
+        cursor.execute(total_sql)
         total_requests = cursor.fetchone()
 
         select_sql = "SELECT * FROM contact"
