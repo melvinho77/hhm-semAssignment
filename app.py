@@ -83,7 +83,7 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
     
-    return render_template('contactUs.html', student_id=session['loggedInStudent'], msg='Question submitted successfully.' sendSucessful=1)
+    return render_template('contactUs.html', student_id=session['loggedInStudent'], msg='Question submitted successfully.', sendSucessful=1)
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
