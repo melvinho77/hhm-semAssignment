@@ -302,6 +302,10 @@
             color: #fff;
             /* Change the text color of the active page number */
         }
+
+        .category-td {
+            text-transform: capitalize;
+        }
     </style>
 </head>
 
@@ -321,7 +325,7 @@
         <div class="details-body">
             <div class="row">
                 <!-- Left column for filter options -->
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="filter-details">
                         <label for="category-filter">Category</label>
                         <select id="category-filter" name="category" class="form-select">
@@ -346,7 +350,7 @@
                 </div>
 
                 <!-- Right column for displayed data -->
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="table-details">
                         <!-- Your displayed data goes here -->
                         <table class="table table-bordered">
@@ -363,9 +367,9 @@
                                 {% for contact in contact_details %}
                                 <tr>
                                     <td>{{ contact[6] }}</td>
-                                    <td>{{ contact[2] }}</td>
-                                    <td><textarea class="form-control">{{ contact[3] }}</textarea></td>
-                                    <td><textarea class="form-control">{{ contact[4] }}</textarea></td>
+                                    <td class="category-td">{{ contact[2] }}</td>
+                                    <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
+                                    <td><textarea class="form-control" >{{ contact[4] }}</textarea></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
