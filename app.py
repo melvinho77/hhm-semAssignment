@@ -111,14 +111,13 @@ def adminContactUs():
         total_requests = cursor.fetchone()[0]
 
         # Define the number of applications per page
-        per_page = 6  # Adjust as needed
+        per_page = 5  # Adjust as needed
 
         # Get the current page from the request or default to 1
         current_page = request.args.get('page', default=1, type=int)
 
         # Calculate the start and end indices for the current page
         start_index = (current_page - 1) * per_page
-        end_index = start_index + per_page
 
         # Retrieve contact details for the current page
         cursor.execute("SELECT * FROM contact LIMIT %s, %s",
