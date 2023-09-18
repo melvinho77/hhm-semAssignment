@@ -104,19 +104,28 @@ def adminContactUs():
     password = request.form.get('password')
 
     try:
+        total_sql = "SELECT COUNT(*) FROM request"
+        cursor = db_conn.cursor()
+        cursor.execute(select_sql)
+        total_requests = cursor.fetchone()
+
         select_sql = "SELECT * FROM contact"
         cursor = db_conn.cursor()
         cursor.execute(select_sql)
         contactDetails = cursor.fetchall()
 
-        # Number of pages
-        per_page = 5
+        # Define the number of applications per page
+        per_page = 6  # Adjust as needed
 
-        # Get the current page number from the request (default to 1)
-        page = request.args.get('page', 1, type=int)
+        # Get the current page from the request or default to 1
+        current_page = request.args.get('page', default=1, type=int)
 
-        # Paginate the contact details
-        contact_details = Pagination(None, page, per_page, len(contactDetails), contactDetails)
+        # Calculate the total number of pages
+        num_pages = (total_requests + per_page - 1) // per_page
+
+        # Calculate the start and end indices for the current page
+        start_index = (current_page - 1) * per_page
+        end_index = start_index + per_page
 
     except Exception as e:
         db_conn.rollback()
@@ -125,16 +134,17 @@ def adminContactUs():
     if email == 'hhm@gmail.com' and password == '123':
         session['name'] = 'Ho Hong Meng'
         session['loggedIn'] = 'hhm'
-        return render_template('adminContactUs.html', name=session['name'], contact_details=contact_details)
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages)
 
     elif email == 'css@gmail.com' and password == '456':
         session['name'] = 'Cheong Soo Siew'
         session['loggedIn'] = 'css'
-        return render_template('adminContactUs.html', name=session['name'], contact_details=contact_details)
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages)
 
     else:
         error_msg = 'Invalid email or password. Please try again.'
         return render_template('adminLogin.html', msg=error_msg)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

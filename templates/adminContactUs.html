@@ -347,26 +347,21 @@
                         </table>
                         <!-- Pagination links -->
                         <div class="pagination">
-                            <ul class="pagination">
-                                {% if contact_details.has_prev %}
-                                <li class="page-item"><a class="page-link"
-                                        href="?page={{ contact_details.prev_num }}">Previous</a></li>
-                                {% endif %}
-                                {% for num in contact_details.iter_pages() %}
-                                {% if num %}
-                                <li class="page-item {% if num == contact_details.page %}active{% endif %}">
-                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                                </li>
-                                {% else %}
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                                {% endif %}
-                                {% endfor %}
-                                {% if contact_details.has_next %}
-                                <li class="page-item"><a class="page-link"
-                                        href="?page={{ contact_details.next_num }}">Next</a></li>
-                                {% endif %}
-                            </ul>
+                            <a href="{{ url_for('adminContactUs', page=1) }}" class="prev" {% if current_page==1
+                                %}style="display:none;" {% endif %}>Previous</a>
+
+                            {% for page in range(1, num_pages + 1) %}
+                            {% if page == current_page %}
+                            <a href="#" class="active">{{ page }}</a>
+                            {% else %}
+                            <a href="{{ url_for('adminContactUs', page=page) }}">{{ page }}</a>
+                            {% endif %}
+                            {% endfor %}
+
+                            <a href="{{ url_for('adminContactUs', page=num_pages) }}" class="next" {% if
+                                current_page==num_pages or num_pages==0 %}style="display:none;" {% endif %}>Next</a>
                         </div>
+
                     </div>
                 </div>
             </div>
