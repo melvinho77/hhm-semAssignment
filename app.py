@@ -95,21 +95,19 @@ def adminLogin():
     return render_template('adminLogin.html', network_details=network_details)
 
 
-@app.route('/adminContactUs', methods=['POST'])
 def adminContactUs():
-    email = request.form.get('email')
-    password = request.form.get('password')
+    # Check if the user is logged in as admin
+    if 'loggedIn' not in session or (session['loggedIn'] != 'hhm' and session['loggedIn'] != 'css'):
+        # Redirect to the login page if not logged in as admin
+        return redirect('/adminLogin')
+
+    network_details = get_network_details()
 
     try:
-        total_sql = "SELECT COUNT(*) FROM contact"
+        # Retrieve the total number of contact records
         cursor = db_conn.cursor()
-        cursor.execute(total_sql)
-        total_requests = cursor.fetchone()
-
-        select_sql = "SELECT * FROM contact"
-        cursor = db_conn.cursor()
-        cursor.execute(select_sql)
-        contactDetails = cursor.fetchall()
+        cursor.execute("SELECT COUNT(*) FROM contact")
+        total_requests = cursor.fetchone()[0]
 
         # Define the number of applications per page
         per_page = 6  # Adjust as needed
@@ -117,30 +115,49 @@ def adminContactUs():
         # Get the current page from the request or default to 1
         current_page = request.args.get('page', default=1, type=int)
 
-        # Calculate the total number of pages
-        num_pages = (total_requests + per_page - 1) // per_page
-
         # Calculate the start and end indices for the current page
         start_index = (current_page - 1) * per_page
         end_index = start_index + per_page
+
+        # Retrieve contact details for the current page
+        cursor.execute("SELECT * FROM contact LIMIT %s, %s",
+                       (start_index, per_page))
+        contactDetails = cursor.fetchall()
+
+        # Calculate the total number of pages
+        num_pages = (total_requests + per_page - 1) // per_page
 
     except Exception as e:
         db_conn.rollback()
         return str(e)
 
-    if email == 'hhm@gmail.com' and password == '123':
-        session['name'] = 'Ho Hong Meng'
-        session['loggedIn'] = 'hhm'
-        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages)
+    if request.method == 'POST':
+        # Handle the form submission with email and password
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-    elif email == 'css@gmail.com' and password == '456':
-        session['name'] = 'Cheong Soo Siew'
-        session['loggedIn'] = 'css'
-        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages)
+        if email == 'hhm@gmail.com' and password == '123':
+            session['name'] = 'Ho Hong Meng'
+            session['loggedIn'] = 'hhm'
+            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages)
 
-    else:
-        error_msg = 'Invalid email or password. Please try again.'
-        return render_template('adminLogin.html', msg=error_msg)
+        elif email == 'css@gmail.com' and password == '456':
+            session['name'] = 'Cheong Soo Siew'
+            session['loggedIn'] = 'css'
+            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages)
+
+        else:
+            error_msg = 'Invalid email or password. Please try again.'
+            return render_template('adminLogin.html', msg=error_msg)
+
+    return render_template(
+        'adminContactUs.html',
+        name=session['name'],
+        contact_details=contactDetails,
+        current_page=current_page,
+        num_pages=num_pages,
+        network_details=network_details
+    )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

@@ -350,12 +350,9 @@
                             <a href="{{ url_for('adminContactUs', page=1) }}" class="prev" {% if current_page==1
                                 %}style="display:none;" {% endif %}>Previous</a>
 
-                            {% for page in range(1, num_pages + 1) %}
-                            {% if page == current_page %}
-                            <a href="#" class="active">{{ page }}</a>
-                            {% else %}
-                            <a href="{{ url_for('adminContactUs', page=page) }}">{{ page }}</a>
-                            {% endif %}
+                            {% for page_num in range(1, num_pages + 1) %}
+                            <a href="{{ url_for('adminContactUs', page=page_num) }}" {% if page_num==current_page
+                                %}class="active" {% endif %}>{{ page_num }}</a>
                             {% endfor %}
 
                             <a href="{{ url_for('adminContactUs', page=num_pages) }}" class="next" {% if
