@@ -95,27 +95,44 @@ def submitContactUs():
 def adminLogin():
     return render_template('adminLogin.html')
 
+
 @app.route('/adminContactUs', methods=['POST'])
 def adminContactUs():
     email = request.form.get('email')
     password = request.form.get('password')
 
+    try:
+        select_sql = "SELECT * FROM contact"
+        cursor = db_conn.cursor()
+        cursor.execute(select_sql)
+        contactDetails = cursor.fetchall()
+
+        # Number of pages
+        per_page = 5
+
+        # Get the current page number from the request (default to 1)
+        page = request.args.get('page', 1, type=int)
+
+        # Paginate the contact details
+        contact_details = contactDetails.paginate(page=page, per_page=per_page)
+
+    except Exception as e:
+        db_conn.rollback()
+        return str(e)
+
     if email == 'hhm@gmail.com' and password == '123':
         session['name'] = 'Ho Hong Meng'
         session['loggedIn'] = 'hhm'
-        return render_template('adminContactUs.html', name=session['name'])
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contact_details)
 
     elif email == 'css@gmail.com' and password == '456':
         session['name'] = 'Cheong Soo Siew'
         session['loggedIn'] = 'css'
-        return render_template('adminContactUs.html', name=session['name'])
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contact_details)
 
     else:
         error_msg = 'Invalid email or password. Please try again.'
         return render_template('adminLogin.html', msg=error_msg)
-
-# @app.route('/adminViewContact', methods=['POST'])
-# def adminViewContact():
 
 
 if __name__ == '__main__':

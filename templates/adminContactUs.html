@@ -255,7 +255,7 @@
         /* Set the width for each column */
         .table th:nth-child(1),
         .table td:nth-child(1) {
-            width: 10%;
+            width: 15%;
         }
 
         .table th:nth-child(2),
@@ -275,7 +275,7 @@
 
         .table th:nth-child(5),
         .table td:nth-child(5) {
-            width: 15%;
+            width: 10%;
         }
     </style>
 </head>
@@ -327,23 +327,80 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Student</th>
                                     <th>Category</th>
                                     <th>Question</th>
                                     <th>Reply</th>
-                                    <th>Student</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Your table rows will go here -->
+                                {% for contact in contact_details.items %}
+                                <tr>
+                                    <td>{{ contact[6] }}</td>
+                                    <td>{{ contact[2] }}</td>
+                                    <td>{{ contact[3] }}</td>
+                                    <td>{{ contact[4] }}</td>
+                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
+                        <!-- Pagination links -->
+                        <div class="pagination">
+                            <ul class="pagination">
+                                {% if contact_details.has_prev %}
+                                <li class="page-item"><a class="page-link"
+                                        href="?page={{ contact_details.prev_num }}">Previous</a></li>
+                                {% endif %}
+                                {% for num in contact_details.iter_pages() %}
+                                {% if num %}
+                                <li class="page-item {% if num == contact_details.page %}active{% endif %}">
+                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if contact_details.has_next %}
+                                <li class="page-item"><a class="page-link"
+                                        href="?page={{ contact_details.next_num }}">Next</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+
+    <footer class="page-foot page-foot-default section-35 bg-gray-base">
+        <div class="shell">
+            <!-- req 8 -->
+            <div class="trackIp" style="font-size: 12px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;">
+                <p>Host Name: {{ network_details['Host Name'] }}</p>
+                <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+                <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
+            </div>
+            <div class="range text-center">
+                <div class="cell-xs-12">
+                    <p class="small" align="center">
+                        <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
+                                    href="https://www.tarc.edu.my/disclaimer.jsp"
+                                    class="link-primary-inverse">Disclaimer</a>
+                                <a href="https://www.tarc.edu.my/privacy-policy.jsp"
+                                    class="link-primary-inverse">Privacy Policy</a>
+                                and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
+                                    target="_new">ABAC Policy</a>
+                            </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
