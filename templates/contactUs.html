@@ -309,14 +309,6 @@
 
 <body>
     <div class="container">
-        <!-- Add this section for displaying flash messages -->
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="alert alert-success">
-            {{ messages[0] }}
-        </div>
-        {% endif %}
-        {% endwith %}
         <div class="section">
             <h1>We'd love to hear from you</h1>
         </div>
@@ -327,9 +319,16 @@
         </div>
 
         <div class="feedback-section">
+            <!-- Add this section for displaying flash messages -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-success">
+                {{ messages[0] }}
+            </div>
+            {% endif %}
+            {% endwith %}
             <div class="feedback-box">
                 <div class="feedback-form">
-
                     <form action="/submitContactUs" method="POST">
                         <div class="form-header">
                             <span class="title">Contact Us</span>
