@@ -89,8 +89,9 @@ def submitContactUs():
     except Exception as e:
         db_conn.rollback()
         return str(e)
-    
-@app.route('/adminLogin', methods=['POST'])
+
+
+@app.route('/adminLogin', methods=['POST', 'GET'])
 def adminLogin():
     return render_template('adminLogin.html')
 
@@ -115,6 +116,7 @@ def adminContactUs():
 
 # @app.route('/adminViewContact', methods=['POST'])
 # def adminViewContact():
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
