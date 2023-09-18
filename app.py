@@ -1,5 +1,5 @@
 from flask import render_template, make_response
-from flask import redirect
+from flask import redirect, flash
 import mimetypes
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from botocore.exceptions import ClientError
@@ -60,14 +60,11 @@ def contact_us():
     # Call the get_network_details function to retrieve network details
     network_details = get_network_details()
 
-    # Set the msg variable to empty
-    msg = ""
-
     # Pass the network_details and msg to the contactUs.html template
-    return render_template("contactUs.html", network_details=network_details, msg=msg)
+    return render_template("contactUs.html", network_details=network_details)
 
 
-@app.route('/submitContactUs')
+@app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
     # After log in, then only can ask question
     student_id = request.form.get('student_id')
@@ -83,13 +80,17 @@ def submitContactUs():
                        inquiries, None, None, student_id))
         db_conn.commit()
 
+        # Flash a success message
+        flash('Question submitted successfully', 'success')
+
+        # Redirect back to the contactUs page
+        return redirect('/contactUs')
+
     except Exception as e:
         db_conn.rollback()
         return str(e)
-    
-    msg='Question submitted successfully.'
 
-    return render_template('contactUs.html', student_id=session['loggedInStudent'], msg=msg)
+    return render_template('contactUs.html', student_id=session['loggedInStudent'])
 
 
 if __name__ == '__main__':
