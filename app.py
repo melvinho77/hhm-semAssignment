@@ -116,10 +116,13 @@ def send_email():
     category = request.form['category']  
     inquiries = request.form['inquiries']
 
-    msg = Message(subject, sender='semassignment66@gmail.com', recipients=[email])
-    msg.body = f'Hi {name},\n\nCategory: {category}\n\n{inquiries}'
+    try:
+        msg = Message(subject, sender='semassignment66@gmail.com', recipients=[email])
+        msg.body = f'Hi {name},\n\nCategory: {category}\n\n{inquiries}'
 
-    mail.send(msg)
+        mail.send(msg)
+    except Exception as e:
+        return str(e)
 
     # Flash a success message
     flash('Question sent successfully', 'success')
