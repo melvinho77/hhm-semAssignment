@@ -97,11 +97,6 @@ def adminLogin():
 
 @app.route('/adminContactUs')
 def adminContactUs():
-    # Check if the user is logged in as admin
-    if 'loggedIn' not in session or (session['loggedIn'] != 'hhm' and session['loggedIn'] != 'css'):
-        # Redirect to the login page if not logged in as admin
-        return redirect('/adminLogin')
-
     network_details = get_network_details()
 
     try:
