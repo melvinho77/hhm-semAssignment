@@ -402,18 +402,10 @@
                             <label for="floatingTextarea">Enter your inquiries</label>
                         </div>
                         <div class="submit-button">
-                            <button type="button" class="btn-link" onclick="openModal()">Don't have an account?</button>
+                            <a href="/emailContactUs">Don't have an account?</a>
                             <input type="submit" class="btn btn-primary" value="Submit">
                         </div>
                     </form>
-                </div>
-
-                <div class="modal">
-                    <div class="modal-content">
-                        <button type="button" class="close-button" onclick="closeModal()">X</button>
-                        <h1>This is a modal</h1>
-                        <p>This is the content of the modal.</p>
-                    </div>
                 </div>
 
                 <div class="feedback-details">
@@ -496,17 +488,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        function openModal() {
-            document.querySelector('.modal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.querySelector('.modal').classList.remove('active');
-        }
-
-    </script>
 </body>
 
 </html>

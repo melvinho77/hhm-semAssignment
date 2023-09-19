@@ -61,6 +61,11 @@ def contact_us():
     # Pass the network_details and msg to the contactUs.html template
     return render_template("contactUs.html", network_details=network_details)
 
+@app.route('/emailContactUs')
+def email_contactUs():
+    network_details = get_network_details()
+
+    return render_template("emailContactUs.html", network_details=network_details)
 
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
