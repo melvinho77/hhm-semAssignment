@@ -108,7 +108,7 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
 
-@app.route('/emailSubmitContactUs', methods=['POST'])
+@app.route('/submitEmailContactUs', methods=['POST'])
 def send_email():
     name = request.form['name']
     email = request.form['email']
