@@ -95,7 +95,7 @@ def adminLogin():
     return render_template('adminLogin.html', network_details=network_details)
 
 
-@app.route('/adminContactUs')
+@app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
     # Handle the form submission with email and password
     email = request.form.get('email')
