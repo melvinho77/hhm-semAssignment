@@ -337,6 +337,14 @@
             padding: 10px;
             cursor: pointer;
         }
+
+        .btn-link {
+            color: #000000;
+            text-decoration: underline;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+        }
     </style>
 </head>
 
@@ -394,7 +402,7 @@
                             <label for="floatingTextarea">Enter your inquiries</label>
                         </div>
                         <div class="submit-button">
-                            <a onclick="openModal()">Don't have an account?</a>
+                            <button type="button" class="btn-link" onclick="openModal()">Don't have an account?</button>
                             <input type="submit" class="btn btn-primary" value="Submit">
                         </div>
                     </form>
