@@ -7,6 +7,7 @@ from pymysql import connections
 import boto3
 from config import *
 import socket
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
 app.static_folder = 'static'  # The name of your static folder
@@ -24,6 +25,18 @@ db_conn = connections.Connection(
     db=customdb
 
 )
+
+app.config.update(dict(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USE_TLS=False,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME='semassignment66@gmail.com',
+    MAIL_PASSWORD='semAssignment'
+))
+
+mail = Mail(app)
+
 output = {}
 table = 'focsWebsite'
 
@@ -61,11 +74,13 @@ def contact_us():
     # Pass the network_details and msg to the contactUs.html template
     return render_template("contactUs.html", network_details=network_details)
 
+
 @app.route('/emailContactUs')
 def email_contactUs():
     network_details = get_network_details()
 
     return render_template("emailContactUs.html", network_details=network_details)
+
 
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
@@ -93,6 +108,24 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
 
+@app.route('/emailSubmitContactUs', methods=['POST'])
+def send_email():
+    name = request.form['name']
+    email = request.form['email']
+    subject = request.form['subject'] 
+    category = request.form['category']  
+    inquiries = request.form['inquiries']
+
+    msg = Message(subject, sender='semassignment66@gmail.com', recipients=[email])
+    msg.body = f'Hi {name},\n\nCategory: {category}\n\n{inquiries}'
+
+    mail.send(msg)
+
+    # Flash a success message
+    flash('Question sent successfully', 'success')
+
+    #Redirect back to the contactUs page
+    return redirect('/emailContactUs.html')
 
 @app.route('/adminLogin')
 def adminLogin():
@@ -107,12 +140,12 @@ def adminContactUs():
     password = request.form.get('password')
 
     if email == 'hhm@gmail.com' and password == '123':
-            session['name'] = 'Ho Hong Meng'
-            session['loggedIn'] = 'hhm'
+        session['name'] = 'Ho Hong Meng'
+        session['loggedIn'] = 'hhm'
 
     elif email == 'css@gmail.com' and password == '456':
-            session['name'] = 'Cheong Soo Siew'
-            session['loggedIn'] = 'css'
+        session['name'] = 'Cheong Soo Siew'
+        session['loggedIn'] = 'css'
 
     network_details = get_network_details()
 
