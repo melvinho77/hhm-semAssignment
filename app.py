@@ -97,6 +97,23 @@ def adminLogin():
 
 @app.route('/adminContactUs')
 def adminContactUs():
+    # Handle the form submission with email and password
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    if email == 'hhm@gmail.com' and password == '123':
+            session['name'] = 'Ho Hong Meng'
+            session['loggedIn'] = 'hhm'
+
+    elif email == 'css@gmail.com' and password == '456':
+            session['name'] = 'Cheong Soo Siew'
+            session['loggedIn'] = 'css'
+
+    # Check if the user is logged in as admin
+    # if 'loggedIn' not in session or (session['loggedIn'] != 'hhm' and session['loggedIn'] != 'css'):
+    #     # Redirect to the login page if not logged in as admin
+    #     return redirect('/adminLogin')
+
     network_details = get_network_details()
 
     try:
@@ -127,23 +144,16 @@ def adminContactUs():
         return str(e)
 
     if request.method == 'POST':
-        # Handle the form submission with email and password
-        email = request.form.get('email')
-        password = request.form.get('password')
 
         if email == 'hhm@gmail.com' and password == '123':
-            session['name'] = 'Ho Hong Meng'
-            session['loggedIn'] = 'hhm'
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages)
+            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages, network_details=network_details)
 
         elif email == 'css@gmail.com' and password == '456':
-            session['name'] = 'Cheong Soo Siew'
-            session['loggedIn'] = 'css'
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages)
+            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages, network_details=network_details)
 
         else:
             error_msg = 'Invalid email or password. Please try again.'
-            return render_template('adminLogin.html', msg=error_msg)
+            return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
     return render_template(
         'adminContactUs.html',
