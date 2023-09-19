@@ -107,11 +107,11 @@ def submitContactUs():
 
 @app.route('/submitEmailContactUs', methods=['POST'])
 def send_email():
-    name = request.form['name']
-    email = request.form['email']
-    subject = request.form['subject'] 
-    category = request.form['category']  
-    inquiries = request.form['inquiries']
+    name = request.form.get['name']
+    email = request.form.get['email']
+    subject = request.form.get['subject'] 
+    category = request.form.get['category']  
+    inquiries = request.form.get['inquiries']
 
     try:
         msg = Message(subject, sender='semassignment66@gmail.com', recipients=[email])
