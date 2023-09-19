@@ -197,7 +197,10 @@
         .submit-button {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: flex-end;
+            align-items: center;
+            /* Add spacing between components */
+            gap: 1rem;
         }
 
         .contact-info {
@@ -304,6 +307,57 @@
             /* Change the background color of the link when it is hovered */
             background-color: #000;
         }
+
+        .email-contact-form {
+            /* Use the same flexbox layout as the existing contact form */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            /* Use the same margin and padding as the existing contact form */
+            margin: 20px;
+            padding: 20px;
+
+            /* Use the same border and border radius as the existing contact form */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .email-contact-form input,
+        .email-contact-form select,
+        .email-contact-form textarea {
+            /* Use the same font family and size as the existing contact form */
+            font-family: sans-serif;
+            font-size: 16px;
+
+            /* Use the same border and border radius as the existing contact form fields */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            /* Use the same margin and padding as the existing contact form fields */
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .email-contact-form textarea {
+            /* Use the same height as the existing contact form inquiries field */
+            height: 200px;
+        }
+
+        .email-contact-form button {
+            /* Use the same font family and size as the existing contact form submit button */
+            font-family: sans-serif;
+            font-size: 16px;
+
+            /* Use the same border and border radius as the existing contact form submit button */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            /* Use the same margin and padding as the existing contact form submit button */
+            margin: 10px 0;
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -361,6 +415,7 @@
                             <label for="floatingTextarea">Enter your inquiries</label>
                         </div>
                         <div class="submit-button">
+                            <a href="#">Don't have an account?</a>
                             <input type="submit" class="btn btn-primary" value="Submit">
                         </div>
                     </form>
@@ -414,7 +469,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -447,6 +501,51 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const dontHaveAccountButton = document.querySelector('.submit-button a');
+        const contactForm = document.querySelector('.feedback-form form');
+
+        dontHaveAccountButton.addEventListener('click', function () {
+            // Hide the current contact form
+            contactForm.classList.add('hidden');
+
+            // Create a new email-based contact form
+            const emailForm = document.createElement('form');
+            emailForm.action = '/submitContactUs';
+            emailForm.method = 'POST';
+
+            // Create an email input field
+            const emailInputField = document.createElement('input');
+            emailInputField.type = 'email';
+            emailInputField.name = 'email';
+            emailInputField.placeholder = 'Enter your email address';
+            emailInputField.required = true;
+
+            // Create a category select field
+            const categorySelectField = document.createElement('select');
+            categorySelectField.name = 'category';
+            categorySelectField.required = true;
+
+            // Create a inquiries textarea field
+            const inquiriesTextareaField = document.createElement('textarea');
+            inquiriesTextareaField.name = 'inquiries';
+            inquiriesTextareaField.placeholder = 'Enter your inquiries';
+            inquiriesTextareaField.style.height = '200px';
+            inquiriesTextareaField.required = true;
+
+            // Append all of the fields to the email form
+            emailForm.appendChild(emailInputField);
+            emailForm.appendChild(categorySelectField);
+            emailForm.appendChild(inquiriesTextareaField);
+
+            // Append the email form to the contact form div
+            contactForm.appendChild(emailForm);
+
+            // Show the email form
+            emailForm.classList.remove('hidden');
+        });
+    </script>
 </body>
 
 </html>
