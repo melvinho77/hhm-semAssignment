@@ -189,11 +189,11 @@ def replyQuestion():
     repliedBy = session['name']
 
     # Update the contact us details
-    update_sql = "UPDATE contact SET reply = %s, repliedBy = %s WHERE contactId = %s"
+    update_sql = "UPDATE contact SET reply = %s, repliedBy = %s, status=%s WHERE contactId = %s"
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(update_sql, (reply, repliedBy, contactId))
+        cursor.execute(update_sql, (reply, repliedBy, 'completed', contactId))
         db_conn.commit()
 
     except Exception as e:
