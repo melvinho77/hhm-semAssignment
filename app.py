@@ -7,7 +7,7 @@ from pymysql import connections
 import boto3
 from config import *
 import socket
-from flask_mail import Mail, Message
+
 
 app = Flask(__name__)
 app.static_folder = 'static'  # The name of your static folder
@@ -24,15 +24,6 @@ db_conn = connections.Connection(
     password=custompass,
     db=customdb
 )
-
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 2525
-app.config['MAIL_USERNAME'] = 'semassignment66@gmail.com'
-app.config['MAIL_PASSWORD'] = 'semAssignment'
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-
-mail = Mail(app)
 
 output = {}
 table = 'focsWebsite'
@@ -72,13 +63,6 @@ def contact_us():
     return render_template("contactUs.html", network_details=network_details)
 
 
-@app.route('/emailContactUs')
-def email_contactUs():
-    network_details = get_network_details()
-
-    return render_template("emailContactUs.html", network_details=network_details)
-
-
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
     # After log in, then only can ask question
@@ -105,25 +89,6 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
 
-    name = request.form.get['name']
-    email = request.form.get['email']
-    subject = request.form.get['subject'] 
-    category = request.form.get['category']  
-    inquiries = request.form.get['inquiries']
-
-    try:
-        msg = Message(subject, sender='semassignment66@gmail.com', recipients=[email])
-        msg.body = f'Hi {name},\n\nCategory: {category}\n\n{inquiries}'
-
-        mail.send(msg)
-    except Exception as e:
-        return str(e)
-
-    # Flash a success message
-    flash('Question sent successfully', 'success')
-
-    #Redirect back to the contactUs page
-    return redirect('/emailContactUs.html')
 
 @app.route('/adminLogin')
 def adminLogin():
@@ -195,6 +160,38 @@ def adminContactUs():
         network_details=network_details
     )
 
+
+@app.route('/replyQuestion', methods=['POST', 'GET'])
+def replyQuestion():
+    contactId = request.form.get('contactId')
+    reply = request.form.get('reply')
+    repliedBy = session['name']
+
+    # Update the contact us details
+    update_sql = "UPDATE contact SET reply = %s, repliedBy = %s WHERE contactId = %s"
+    cursor = db_conn.cursor()
+
+    try:
+        cursor.execute(update_sql, (reply, repliedBy, contactId))
+        db_conn.commit()
+
+    except Exception as e:
+        db_conn.rollback()
+        return str(e)
+
+    if 'name' in session and 'email' in session:
+        name = session['name']
+        email = session['email']
+        if email == 'hhm@gmail.com' and name == 'Ho Hong Meng':
+            session['loggedIn'] = 'hhm'
+        elif email == 'css@gmail.com' and name == 'Cheong Soo Siew':
+            session['loggedIn'] = 'css'
+
+    # Flash a success message
+    flash('Question submitted successfully', 'success')
+
+    # Redirect back to the contactUs page
+    return redirect('/adminContactUs')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

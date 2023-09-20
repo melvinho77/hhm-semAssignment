@@ -255,17 +255,12 @@
         /* Set the width for each column */
         .table th:nth-child(1),
         .table td:nth-child(1) {
-            width: 15%;
+            width: 10%;
         }
 
         .table th:nth-child(2),
         .table td:nth-child(2) {
-            width: 15%;
-        }
-
-        .table th:nth-child(3),
-        .table td:nth-child(3) {
-            width: 30%;
+            width: 10%;
         }
 
         .table th:nth-child(4),
@@ -275,7 +270,18 @@
 
         .table th:nth-child(5),
         .table td:nth-child(5) {
+            width: 30%;
+        }
+
+        .table th:nth-child(5),
+        .table td:nth-child(5) {
             width: 10%;
+        }
+
+
+        .table th:nth-child(6),
+        .table td:nth-child(6) {
+            width: 5%;
         }
 
         /* Center the pagination and add spacing between page numbers */
@@ -321,7 +327,13 @@
                 <i class="fas fa-search search-icon"></i>
             </div>
         </div>
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-success">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
         <div class="details-body">
             <div class="row">
                 <!-- Left column for filter options -->
@@ -360,17 +372,29 @@
                                     <th>Category</th>
                                     <th>Question</th>
                                     <th>Reply</th>
+                                    <th>Replied By</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for contact in contact_details %}
-                                <tr>
-                                    <td>{{ contact[6] }}</td>
-                                    <td class="category-td">{{ contact[2] }}</td>
-                                    <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
-                                    <td><textarea class="form-control" >{{ contact[4] }}</textarea></td>
-                                </tr>
+                                <form action="/replyQuestion" method="POST">
+                                    <input type="hidden" value="{{ contact[0] }}" name="contactId">
+                                    <tr>
+                                        <td>{{ contact[6] }}</td>
+                                        <td class="category-td">{{ contact[2] }}</td>
+                                        <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
+                                        <td><textarea class="form-control" name="reply">{{ contact[4] }}</textarea></td>
+                                        <td class="repliedBy-td">{{ contact[5] }}</td>
+                                        <td style="text-align: center;">
+                                            <div class="submit-button">
+                                                <input type="submit" class="btn btn-primary"
+                                                    value="{% if contact[4] %}Replied{% else %}Reply{% endif %}" {% if
+                                                    contact[4] %}disabled style="cursor: not-allowed;" endif %}>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </form>
                                 {% endfor %}
                             </tbody>
                         </table>
