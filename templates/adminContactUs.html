@@ -383,7 +383,6 @@
                                     <th>Question</th>
                                     <th>Reply</th>
                                     <th>Replied By</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -410,7 +409,7 @@
                             </tbody>
                         </table>
                         <!-- Pagination links -->
-                        <div class="pagination">
+                        <!-- <div class="pagination">
                             <a href="{{ url_for('adminContactUs', page=1) }}" class="prev" {% if current_page==1
                                 %}style="display:none;" {% endif %}>Previous</a>
 
@@ -421,7 +420,7 @@
 
                             <a href="{{ url_for('adminContactUs', page=num_pages) }}" class="next" {% if
                                 current_page==num_pages or num_pages==0 %}style="display:none;" {% endif %}>Next</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -460,7 +459,6 @@
     <script>
         $(document).ready(function () {
             $('#data-table').DataTable();
-            searching: false // Disable search feature
         });
     </script>
 
