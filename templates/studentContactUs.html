@@ -401,19 +401,6 @@
                                 {% endfor %}
                             </tbody>
                         </table>
-                        <!-- Pagination links -->
-                        <!-- <div class="pagination">
-                            <a href="{{ url_for('adminContactUs', page=1) }}" class="prev" {% if current_page==1
-                                %}style="display:none;" {% endif %}>Previous</a>
-
-                            {% for page_num in range(1, num_pages + 1) %}
-                            <a href="{{ url_for('adminContactUs', page=page_num) }}" {% if page_num==current_page
-                                %}class="active" {% endif %}>{{ page_num }}</a>
-                            {% endfor %}
-
-                            <a href="{{ url_for('adminContactUs', page=num_pages) }}" class="next" {% if
-                                current_page==num_pages or num_pages==0 %}style="display:none;" {% endif %}>Next</a>
-                        </div> -->
                     </div>
                 </div>
             </div>
