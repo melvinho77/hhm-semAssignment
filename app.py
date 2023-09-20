@@ -201,8 +201,8 @@ def replyQuestion():
 @app.route('/applyFilter', methods=['POST', 'GET'])
 def applyFilter():
     # Extract filter criteria from the form
-    category = request.form.get['category']
-    status = request.form.get['status']
+    category = request.form.get('category')
+    status = request.form.get('status')
     network_details = get_network_details()
 
     try:
@@ -231,9 +231,9 @@ def applyFilter():
             elif email == 'css@gmail.com' and name == 'Cheong Soo Siew':
                 session['loggedIn'] = 'css'
                 session['loggedInName'] = 'Cheong Soo Siew'
-        
+
         return render_template('adminContactUs.html', contact_details=contact_details, network_details=network_details)
-    
+
     except Exception as e:
         db_conn.rollback()
         return str(e)
