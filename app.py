@@ -197,7 +197,7 @@ def submitContactUs():
         flash('Question submitted successfully', 'success')
 
         # Redirect back to the contactUs page
-        return redirect('/contactUs')
+        return redirect('/contactUs.html')
 
     except Exception as e:
         db_conn.rollback()
@@ -287,7 +287,6 @@ def replyQuestion():
 
     # Redirect back to the contactUs page
     return redirect('/adminContactUs')
-
 
 @app.route('/applyFilter', methods=['POST', 'GET'])
 def applyFilter():
