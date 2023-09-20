@@ -388,8 +388,7 @@
 
                             <div class="submit-button"
                                 style="display: flex; align-items: center; justify-content: center;">
-                                <input type="button" class="btn btn-primary" value="Apply Filters"
-                                    onclick="applyFilters()">
+                                <input type="button" class="btn btn-primary" value="Apply Filters">
                             </div>
                         </div>
                     </div>
@@ -475,29 +474,6 @@
             $('#data-table').DataTable();
         });
     </script>
-
-    <script>
-        function applyFilters() {
-            // Get selected filter criteria
-            var category = document.getElementById('category-filter').value;
-            var status = document.getElementById('status-filter').value;
-
-            // Make an AJAX request to the server to fetch filtered data
-            $.ajax({
-                type: "POST",
-                url: "/applyFilter",
-                data: {
-                    category: category,
-                    status: status
-                },
-                success: function (data) {
-                    // Replace the content of the tbody with the updated data
-                    $("#contact-table-body").html(data);
-                }
-            });
-        }
-    </script>
-
 </body>
 
 </html>
