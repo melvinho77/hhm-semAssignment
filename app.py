@@ -232,12 +232,42 @@ def applyFilter():
                 session['loggedIn'] = 'css'
                 session['loggedInName'] = 'Cheong Soo Siew'
 
-        return render_template('adminContactUs.html', contact_details=contact_details, network_details=network_details)
+        return render_template('adminContactUs.html', contact_details=contact_details, network_details=network_details, name=session['loggedInName'])
 
     except Exception as e:
         db_conn.rollback()
         return str(e)
 
+
+@app.route('/studentApplyFilter', methods=['POST', 'GET'])
+def studentApplyFilter():
+    # Extract filter criteria from the form
+    category = request.form.get('category')
+    status = request.form.get('status')
+    network_details = get_network_details()
+
+    try:
+        # Create a cursor
+        cursor = db_conn.cursor()
+
+        # Construct the SQL query based on the selected filters
+        sql = "SELECT * FROM contact WHERE 1=1 AND student = %s"
+
+        if category != '*':
+            sql += f" AND category = '{category}'"
+        if status != '*':
+            sql += f" AND status = '{status}'"
+
+        cursor.execute(sql, ('2'))
+
+        # Fetch the filtered data
+        contact_details = cursor.fetchall()
+
+        return render_template('studentContactUs.html', contact_details=contact_details, network_details=network_details)
+
+    except Exception as e:
+        db_conn.rollback()
+        return str(e)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
