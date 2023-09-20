@@ -396,7 +396,7 @@
                                 {% for contact in contact_data %}
                                 <input type="hidden" value="{{ contact[0] }}" name="contactId">
                                 <tr>
-                                    <td>{{ contact[2] }}</td>
+                                    <td style="text-transform: capitalize;">{{ contact[2] }}</td>
                                     <td class="category-td"
                                         style="color: {% if contact[1] == 'pending' %}orange{% elif contact[1] == 'completed' %}green{% else %}black{% endif %};">
                                         {{ contact[1] }}</td>
