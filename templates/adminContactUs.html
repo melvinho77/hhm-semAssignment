@@ -365,9 +365,9 @@
         <div class="details-body">
             <div class="row">
                 <!-- Left column for filter options -->
-                <form action="/applyFilter" method="POST">
-                    <div class="col-md-2">
-                        <div class="filter-details">
+                <div class="col-md-2">
+                    <div class="filter-details">
+                        <form action="/applyFilter" method="POST">
                             <label for="category-filter">Category</label>
                             <select id="category-filter" name="category" class="form-select">
                                 <option value="*">All</option>
@@ -390,9 +390,9 @@
                                 style="display: flex; align-items: center; justify-content: center;">
                                 <input type="button" class="btn btn-primary" value="Apply Filters">
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
 
                 <!-- Right column for displayed data -->
                 <div class="col-md-10">
