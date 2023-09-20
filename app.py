@@ -68,6 +68,7 @@ def trackContactUs():
     # Change to session data
     student = '2'
     session['loggedInStudent'] = '2'
+    network_details = get_network_details()
 
     # Retrieve all contact data based on this student
     select_sql = "SELECT * FROM contact WHERE student = %s"
@@ -82,7 +83,7 @@ def trackContactUs():
         db_conn.rollback()
         return str(e)
         
-    return render_template("studentContactUs.html", contact_data=contact_data, student=session['loggedInStudent'])
+    return render_template("studentContactUs.html", contact_data=contact_data, student=session['loggedInStudent'], network_details=network_details)
 
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
