@@ -203,6 +203,7 @@ def applyFilter():
     # Extract filter criteria from the form
     category = request.form['category']
     status = request.form['status']
+    network_details = get_network_details()
 
     try:
         # Create a cursor
@@ -231,7 +232,7 @@ def applyFilter():
                 session['loggedIn'] = 'css'
                 session['loggedInName'] = 'Cheong Soo Siew'
         
-        return render_template('adminContactUs.html', contacts=filtered_data)
+        return render_template('adminContactUs.html', contacts=filtered_data, network_details=network_details)
     
     except Exception as e:
         db_conn.rollback()
