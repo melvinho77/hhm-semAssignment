@@ -82,8 +82,9 @@ def trackContactUs():
     except Exception as e:
         db_conn.rollback()
         return str(e)
-        
+
     return render_template("studentContactUs.html", contact_data=contact_data, student=session['loggedInStudent'], network_details=network_details)
+
 
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
@@ -116,6 +117,7 @@ def submitContactUs():
 def adminLogin():
     network_details = get_network_details()
     return render_template('adminLogin.html', network_details=network_details)
+
 
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
@@ -162,6 +164,7 @@ def adminContactUs():
         network_details=network_details
     )
 
+
 @app.route('/replyQuestion', methods=['POST', 'GET'])
 def replyQuestion():
     contactId = request.form.get('contactId')
@@ -193,6 +196,47 @@ def replyQuestion():
 
     # Redirect back to the contactUs page
     return redirect('/adminContactUs')
+
+
+@app.route('/applyFilter', methods=['POST', 'GET'])
+def applyFilter():
+    # Extract filter criteria from the form
+    category = request.form['category']
+    status = request.form['status']
+
+    try:
+        # Create a cursor
+        cursor = db_conn.cursor()
+
+        # Construct the SQL query based on the selected filters
+        sql = "SELECT * FROM contact WHERE 1=1"
+
+        if category != '*':
+            sql += f" AND category = '{category}'"
+        if status != '*':
+            sql += f" AND status = '{status}'"
+
+        cursor.execute(sql)
+
+        # Fetch the filtered data
+        filtered_data = cursor.fetchall()
+
+        if 'name' in session and 'email' in session:
+            name = session['name']
+            email = session['email']
+            if email == 'hhm@gmail.com' and name == 'Ho Hong Meng':
+                session['loggedIn'] = 'hhm'
+                session['loggedInName'] = 'Ho Hong Meng'
+            elif email == 'css@gmail.com' and name == 'Cheong Soo Siew':
+                session['loggedIn'] = 'css'
+                session['loggedInName'] = 'Cheong Soo Siew'
+        
+        return render_template('adminContactUs.html', contacts=filtered_data)
+    
+    except Exception as e:
+        db_conn.rollback()
+        return str(e)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

@@ -365,29 +365,35 @@
         <div class="details-body">
             <div class="row">
                 <!-- Left column for filter options -->
-                <div class="col-md-2">
-                    <div class="filter-details">
-                        <label for="category-filter">Category</label>
-                        <select id="category-filter" name="category" class="form-select">
-                            <option value="*">All</option>
-                            <option value="general">General</option>
-                            <option value="admission">Admission</option>
-                            <option value="courses">Courses</option>
-                            <option value="events">Events</option>
-                            <option value="technical">Technical</option>
-                            <option value="other">Other</option>
-                        </select>
+                <form action="/applyFilter" method="POST">
+                    <div class="col-md-2">
+                        <div class="filter-details">
+                            <label for="category-filter">Category</label>
+                            <select id="category-filter" name="category" class="form-select">
+                                <option value="*">All</option>
+                                <option value="general">General</option>
+                                <option value="admission">Admission</option>
+                                <option value="courses">Courses</option>
+                                <option value="events">Events</option>
+                                <option value="technical">Technical</option>
+                                <option value="other">Other</option>
+                            </select>
 
-                        <label for="status-filter">Status</label>
-                        <select id="status-filter" name="status" class="form-select">
-                            <option value="*">All</option>
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                        </select>
+                            <label for="status-filter">Status</label>
+                            <select id="status-filter" name="status" class="form-select">
+                                <option value="*">All</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                            </select>
 
-                        <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
+                            <div class="submit-button"
+                                style="display: flex; align-items: center; justify-content: center;">
+                                <input type="button" class="btn btn-primary" value="Apply Filters"
+                                    onclick="applyFilters()">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
 
                 <!-- Right column for displayed data -->
                 <div class="col-md-10">
@@ -404,7 +410,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="contact-table-body">
                                 {% for contact in contact_details %}
                                 <form action="/replyQuestion" method="POST">
                                     <input type="hidden" value="{{ contact[0] }}" name="contactId">
@@ -468,6 +474,28 @@
         $(document).ready(function () {
             $('#data-table').DataTable();
         });
+    </script>
+
+    <script>
+        function applyFilters() {
+            // Get selected filter criteria
+            var category = document.getElementById('category-filter').value;
+            var status = document.getElementById('status-filter').value;
+
+            // Make an AJAX request to the server to fetch filtered data
+            $.ajax({
+                type: "POST",
+                url: "/applyFilter",
+                data: {
+                    category: category,
+                    status: status
+                },
+                success: function (data) {
+                    // Replace the content of the tbody with the updated data
+                    $("#contact-table-body").html(data);
+                }
+            });
+        }
     </script>
 
 </body>
