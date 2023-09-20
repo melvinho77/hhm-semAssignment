@@ -201,8 +201,8 @@ def replyQuestion():
 @app.route('/applyFilter', methods=['POST', 'GET'])
 def applyFilter():
     # Extract filter criteria from the form
-    category = request.form['category']
-    status = request.form['status']
+    category = request.form.get['category']
+    status = request.form.get['status']
     network_details = get_network_details()
 
     try:
