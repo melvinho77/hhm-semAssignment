@@ -263,7 +263,7 @@ def studentApplyFilter():
         # Fetch the filtered data
         contact_details = cursor.fetchall()
 
-        return render_template('studentContactUs.html', contact_details=contact_details, network_details=network_details)
+        return render_template('studentContactUs.html', contact_data=contact_details, network_details=network_details)
 
     except Exception as e:
         db_conn.rollback()

@@ -351,25 +351,30 @@
                 <!-- Left column for filter options -->
                 <div class="col-md-2">
                     <div class="filter-details">
-                        <label for="category-filter">Category</label>
-                        <select id="category-filter" name="category" class="form-select">
-                            <option value="*">All</option>
-                            <option value="general">General</option>
-                            <option value="admission">Admission</option>
-                            <option value="courses">Courses</option>
-                            <option value="events">Events</option>
-                            <option value="technical">Technical</option>
-                            <option value="other">Other</option>
-                        </select>
+                        <form action="/studentApplyFilter" method="POST">
+                            <label for="category-filter">Category</label>
+                            <select id="category-filter" name="category" class="form-select">
+                                <option value="*">All</option>
+                                <option value="general">General</option>
+                                <option value="admissions">Admission</option>
+                                <option value="courses">Courses</option>
+                                <option value="events">Events</option>
+                                <option value="technical">Technical</option>
+                                <option value="other">Other</option>
+                            </select>
 
-                        <label for="status-filter">Status</label>
-                        <select id="status-filter" name="status" class="form-select">
-                            <option value="*">All</option>
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                        </select>
+                            <label for="status-filter">Status</label>
+                            <select id="status-filter" name="status" class="form-select">
+                                <option value="*">All</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                            </select>
 
-                        <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
+                            <div class="submit-button"
+                                style="display: flex; align-items: center; justify-content: center;">
+                                <input type="submit" class="btn btn-primary" value="Apply Filters">
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -396,7 +401,8 @@
                                         style="color: {% if contact[1] == 'pending' %}orange{% elif contact[1] == 'completed' %}green{% else %}black{% endif %};">
                                         {{ contact[1] }}</td>
                                     <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
-                                    <td><textarea class="form-control" name="reply" readonly>{{ contact[4] }}</textarea></td>
+                                    <td><textarea class="form-control" name="reply" readonly>{{ contact[4] }}</textarea>
+                                    </td>
                                     <td class="repliedBy-td">{{ contact[5] }}</td>
                                 </tr>
                                 {% endfor %}
