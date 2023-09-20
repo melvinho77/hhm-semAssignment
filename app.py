@@ -117,7 +117,6 @@ def adminLogin():
     network_details = get_network_details()
     return render_template('adminLogin.html', network_details=network_details)
 
-
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
     # Handle the form submission with email and password
@@ -135,27 +134,10 @@ def adminContactUs():
     network_details = get_network_details()
 
     try:
-        # Retrieve the total number of contact records
         cursor = db_conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM contact")
-        total_requests = cursor.fetchone()[0]
-
-        # Define the number of applications per page
-        per_page = 5  # Adjust as needed
-
-        # Get the current page from the request or default to 1
-        current_page = request.args.get('page', default=1, type=int)
-
-        # Calculate the start and end indices for the current page
-        start_index = (current_page - 1) * per_page
-
         # Retrieve contact details for the current page
-        cursor.execute("SELECT * FROM contact LIMIT %s, %s",
-                       (start_index, per_page))
+        cursor.execute("SELECT * FROM contact")
         contactDetails = cursor.fetchall()
-
-        # Calculate the total number of pages
-        num_pages = (total_requests + per_page - 1) // per_page
 
     except Exception as e:
         db_conn.rollback()
@@ -164,10 +146,10 @@ def adminContactUs():
     if request.method == 'POST':
 
         if email == 'hhm@gmail.com' and password == '123':
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages, network_details=network_details)
+            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
         elif email == 'css@gmail.com' and password == '456':
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, current_page=current_page, num_pages=num_pages, network_details=network_details)
+            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
         else:
             error_msg = 'Invalid email or password. Please try again.'
@@ -177,8 +159,6 @@ def adminContactUs():
         'adminContactUs.html',
         name=session['name'],
         contact_details=contactDetails,
-        current_page=current_page,
-        num_pages=num_pages,
         network_details=network_details
     )
 
