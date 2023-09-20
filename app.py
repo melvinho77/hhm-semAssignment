@@ -63,6 +63,10 @@ def contact_us():
     return render_template("contactUs.html", network_details=network_details)
 
 
+@app.route("/trackContactUs")
+def trackContactUs():
+    
+
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
     # After log in, then only can ask question

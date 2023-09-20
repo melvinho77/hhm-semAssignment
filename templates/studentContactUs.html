@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="wide wow-animation">
+
+<head runat="server">
+    <title>Tunku Abdul Rahman University of Management & Technology - Faculty of Computing and Information Technology
+    </title>
+    <!-- UNCOMMENT THIS SECTION -->
+    <!-- <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="keywords"
+        content="computer science courses in malaysia, computer programming courses in malaysia, computer engineering courses in malaysia">
+    <meta name="description"
+        content="Tunku Abdul Rahman University of Management and Technology is a distinguished institution of higher learning acknowleged locally, nationally and globally for its excellence in providing opportunities for intellectual, personal and professional development.">
+
+    <link rel="icon" href="images/tarIco.ico" type="image/x-icon"> -->
+
+    <!-- bootstrap & fontawesome -->
+
+    <link rel="stylesheet" href="assets/css/colorbox.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include DataTables CSS and JS from a CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+
+
+    <!-- page specific plugin styles -->
+
+    <!--link rel="stylesheet" href="assets/css/jquery-ui.custom.css" /-->
+
+    <!--link rel="stylesheet" href="assets/css/chosen.css" /-->
+    <!--link rel="stylesheet" href="assets/css/datepicker.css" /-->
+    <!--link rel="stylesheet" href="assets/css/bootstrap-timepicker.css" /-->
+    <!--link rel="stylesheet" href="assets/css/daterangepicker.css" />
+            <!--link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.css" /-->
+    <!--link rel="stylesheet" href="assets/css/colorpicker.css" /-->
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="assets/css/ace-fonts.css" />
+
+
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="assets/css/ace.css" class="ace-main-stylesheet" />
+
+    <!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+    <!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.css" />
+		<![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+    <script src="assets/js/ace-extra.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+			<script src="assets/js/html5shiv.js"></script>
+			<script src="assets/js/respond.js"></script>
+		<![endif]-->
+
+
+    <!-- UNCOMMENT THIS SECTION -->
+    <!-- <link rel="stylesheet" type="text/css"
+        href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,400italic,700,900%7CPlayfair+Display:700italic,900">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="assets/css/print.css" />
+
+
+    <link rel="stylesheet" href="assets/css/gold-orange.css?d=2023/08/27 19:06:45">
+    <link rel="stylesheet" href="assets/css/custom.css" /> -->
+
+    <!--[if lt IE 10]>
+    		<div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    		<script src="assets/js/html5shiv.min.js"></script>
+		<![endif]-->
+
+    <style>
+        /* Apply a background color and set text color */
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            /* Light gray background */
+            color: #333;
+            /* Dark text color */
+            font-family: Arial, sans-serif;
+            /* Use a common sans-serif font */
+        }
+
+        /* Center the content vertically and horizontally */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* min-height: 100vh; */
+            margin-bottom: 40px;
+            /* Ensure the container covers the viewport height */
+        }
+
+        .section {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .details-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .details-header h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .floating-search-bar {
+            position: relative;
+            width: 350px;
+            padding: 10px 0;
+            padding-left: 20px;
+            padding-right: 35px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .floating-search-bar:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #ccc;
+            z-index: 1;
+        }
+
+        .search-icon:hover {
+            color: #007bff;
+        }
+
+        /* Body content */
+        .details-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* min-height: 100vh; */
+            margin-bottom: 40px;
+            /* Ensure the container covers the viewport height */
+        }
+
+        /* Style for the filter-details container */
+        .filter-details {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Style for labels */
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Style for select elements */
+        .form-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Style for the Apply Filters button */
+        #apply-filters {
+            display: block;
+            width: 100%;
+        }
+
+        /* Style for the table */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /* Header row */
+        .table-details {
+            padding: 20px 10px;
+        }
+
+        .table thead th {
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        /* Alternating row colors */
+        .table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Hover effect for rows */
+        .table tbody tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Cell padding and text alignment */
+        .table td,
+        .table th {
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Borders */
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+        }
+
+        /* Add a shadow to the table */
+        .table {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Set the width for each column */
+        .table th:nth-child(1),
+        .table td:nth-child(1) {
+            width: 10%;
+        }
+
+        .table th:nth-child(2),
+        .table td:nth-child(2) {
+            width: 10%;
+        }
+
+        .table th:nth-child(4),
+        .table td:nth-child(4) {
+            width: 30%;
+        }
+
+        .table th:nth-child(5),
+        .table td:nth-child(5) {
+            width: 30%;
+        }
+
+        .table th:nth-child(5),
+        .table td:nth-child(5) {
+            width: 10%;
+        }
+
+
+        .table th:nth-child(6),
+        .table td:nth-child(6) {
+            width: 5%;
+        }
+
+        /* Center the pagination and add spacing between page numbers */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            /* Adjust the margin as needed */
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            /* Adjust the spacing between page numbers */
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .pagination .active {
+            background-color: #007BFF;
+            /* Change the background color of the active page number */
+            color: #fff;
+            /* Change the text color of the active page number */
+        }
+
+        .category-td {
+            text-transform: capitalize;
+        }
+
+        /* Adjust the position of the search input */
+        div.dataTables_wrapper div.dataTables_filter {
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        /* Optionally, you can style the search input */
+        div.dataTables_wrapper div.dataTables_filter input {
+            /* Add your CSS styles here */
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 style="margin-top: 10px;">Welcome! {{ name }}</h2>
+        <hr>
+        <div class="details-header">
+            <h2>View Asked Questions</h2>
+            <div class="search-bar">
+                <!-- <input type="text" class="form-control floating-search-bar"
+                    placeholder="Search question / student id / name...">
+                <i class="fas fa-search search-icon"></i> -->
+            </div>
+        </div>
+        <!-- Add this section for displaying flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-success">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <div class="details-body">
+            <div class="row">
+                <!-- Left column for filter options -->
+                <div class="col-md-2">
+                    <div class="filter-details">
+                        <label for="category-filter">Category</label>
+                        <select id="category-filter" name="category" class="form-select">
+                            <option value="*">All</option>
+                            <option value="general">General</option>
+                            <option value="admission">Admission</option>
+                            <option value="courses">Courses</option>
+                            <option value="events">Events</option>
+                            <option value="technical">Technical</option>
+                            <option value="other">Other</option>
+                        </select>
+
+                        <label for="status-filter">Status</label>
+                        <select id="status-filter" name="status" class="form-select">
+                            <option value="*">All</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                        </select>
+
+                        <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
+                    </div>
+                </div>
+
+                <!-- Right column for displayed data -->
+                <div class="col-md-10">
+                    <div class="table-details">
+                        <!-- Your displayed data goes here -->
+                        <table class="table table-bordered" id="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Category</th>
+                                    <th>Question</th>
+                                    <th>Reply</th>
+                                    <th>Replied By</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for contact in contact_details %}
+                                <form action="/replyQuestion" method="POST">
+                                    <input type="hidden" value="{{ contact[0] }}" name="contactId">
+                                    <tr>
+                                        <td>{{ contact[6] }}</td>
+                                        <td class="category-td">{{ contact[2] }}</td>
+                                        <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
+                                        <td><textarea class="form-control" name="reply" {% if contact[4] %} readonly {%
+                                                endif %}>{{ contact[4] }}</textarea></td>
+                                        <td class="repliedBy-td">{{ contact[5] }}</td>
+                                        <td style="text-align: center;">
+                                            <div class="submit-button">
+                                                <input type="submit" class="btn btn-primary"
+                                                    value="{% if contact[4] %}Replied{% else %}Reply{% endif %}" {% if
+                                                    contact[4] %} disabled style="cursor: not-allowed;" {% endif %}>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </form>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <!-- Pagination links -->
+                        <!-- <div class="pagination">
+                            <a href="{{ url_for('adminContactUs', page=1) }}" class="prev" {% if current_page==1
+                                %}style="display:none;" {% endif %}>Previous</a>
+
+                            {% for page_num in range(1, num_pages + 1) %}
+                            <a href="{{ url_for('adminContactUs', page=page_num) }}" {% if page_num==current_page
+                                %}class="active" {% endif %}>{{ page_num }}</a>
+                            {% endfor %}
+
+                            <a href="{{ url_for('adminContactUs', page=num_pages) }}" class="next" {% if
+                                current_page==num_pages or num_pages==0 %}style="display:none;" {% endif %}>Next</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-foot page-foot-default section-35 bg-gray-base">
+        <div class="shell">
+            <!-- req 8 -->
+            <div class="trackIp" style="font-size: 12px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;">
+                <p>Host Name: {{ network_details['Host Name'] }}</p>
+                <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+                <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
+            </div>
+            <div class="range text-center">
+                <div class="cell-xs-12">
+                    <p class="small" align="center">
+                        <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
+                                    href="https://www.tarc.edu.my/disclaimer.jsp"
+                                    class="link-primary-inverse">Disclaimer</a>
+                                <a href="https://www.tarc.edu.my/privacy-policy.jsp"
+                                    class="link-primary-inverse">Privacy Policy</a>
+                                and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
+                                    target="_new">ABAC Policy</a>
+                            </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $('#data-table').DataTable();
+        });
+    </script>
+
+</body>
+
+</html>
