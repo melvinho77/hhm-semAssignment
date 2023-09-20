@@ -25,6 +25,14 @@
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include DataTables CSS and JS from a CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
 
 
     <!-- page specific plugin styles -->
@@ -121,6 +129,7 @@
             justify-content: space-between;
             border-bottom: 1px solid #ccc;
             padding: 10px;
+            margin-bottom: 10px;
         }
 
         .details-header h2 {
@@ -366,11 +375,11 @@
                 <div class="col-md-10">
                     <div class="table-details">
                         <!-- Your displayed data goes here -->
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="data-table">
                             <thead>
                                 <tr>
-                                    <th>Student</th>
-                                    <th>Category</th>
+                                    <th data-sortable="true" data-order="asc">Student</th>
+                                    <th data-sortable="true" data-order="asc">Category</th>
                                     <th>Question</th>
                                     <th>Reply</th>
                                     <th>Replied By</th>
@@ -385,7 +394,8 @@
                                         <td>{{ contact[6] }}</td>
                                         <td class="category-td">{{ contact[2] }}</td>
                                         <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
-                                        <td><textarea class="form-control" name="reply">{{ contact[4] }}</textarea></td>
+                                        <td><textarea class="form-control" name="reply" {% if contact[4] %} readonly {%
+                                                endif %}>{{ contact[4] }}</textarea></td>
                                         <td class="repliedBy-td">{{ contact[5] }}</td>
                                         <td style="text-align: center;">
                                             <div class="submit-button">
@@ -446,6 +456,13 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        $(document).ready(function () {
+            $('#data-table').DataTable();
+        });
+    </script>
+
 </body>
 
 </html>
