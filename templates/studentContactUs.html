@@ -274,23 +274,17 @@
 
         .table th:nth-child(4),
         .table td:nth-child(4) {
-            width: 30%;
+            width: 35%;
         }
 
         .table th:nth-child(5),
         .table td:nth-child(5) {
-            width: 30%;
+            width: 35%;
         }
 
         .table th:nth-child(5),
         .table td:nth-child(5) {
             width: 10%;
-        }
-
-
-        .table th:nth-child(6),
-        .table td:nth-child(6) {
-            width: 5%;
         }
 
         /* Center the pagination and add spacing between page numbers */
@@ -344,8 +338,6 @@
 
 <body>
     <div class="container">
-        <h2 style="margin-top: 10px;">Welcome! {{ name }}</h2>
-        <hr>
         <div class="details-header">
             <h2>View Asked Questions</h2>
             <div class="search-bar">
@@ -354,14 +346,6 @@
                 <i class="fas fa-search search-icon"></i> -->
             </div>
         </div>
-        <!-- Add this section for displaying flash messages -->
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="alert alert-success">
-            {{ messages[0] }}
-        </div>
-        {% endif %}
-        {% endwith %}
         <div class="details-body">
             <div class="row">
                 <!-- Left column for filter options -->
@@ -396,17 +380,15 @@
                         <table class="table table-bordered" id="data-table">
                             <thead>
                                 <tr>
-                                    <th>Student</th>
                                     <th>Category</th>
+                                    <th>Status</th>
                                     <th>Question</th>
                                     <th>Reply</th>
                                     <th>Replied By</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for contact in contact_details %}
-                                <form action="/replyQuestion" method="POST">
+                                {% for contact in contact_data %}
                                     <input type="hidden" value="{{ contact[0] }}" name="contactId">
                                     <tr>
                                         <td>{{ contact[6] }}</td>
@@ -415,15 +397,7 @@
                                         <td><textarea class="form-control" name="reply" {% if contact[4] %} readonly {%
                                                 endif %}>{{ contact[4] }}</textarea></td>
                                         <td class="repliedBy-td">{{ contact[5] }}</td>
-                                        <td style="text-align: center;">
-                                            <div class="submit-button">
-                                                <input type="submit" class="btn btn-primary"
-                                                    value="{% if contact[4] %}Replied{% else %}Reply{% endif %}" {% if
-                                                    contact[4] %} disabled style="cursor: not-allowed;" {% endif %}>
-                                            </div>
-                                        </td>
                                     </tr>
-                                </form>
                                 {% endfor %}
                             </tbody>
                         </table>

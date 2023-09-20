@@ -65,7 +65,24 @@ def contact_us():
 
 @app.route("/trackContactUs")
 def trackContactUs():
-    
+    # Change to session data
+    student = '2'
+    session['loggedInStudent'] = '2'
+
+    # Retrieve all contact data based on this student
+    select_sql = "SELECT * FROM contact WHERE student = %s"
+    cursor = db_conn.cursor()
+
+    try:
+        cursor.execute(select_sql, (student))
+        contact_data = cursor.fetchall()
+        db_conn.commit()
+
+    except Exception as e:
+        db_conn.rollback()
+        return str(e)
+        
+    return render_template("studentContactUs.html", contact_data=contact_data, student=session['loggedInStudent'])
 
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
@@ -163,7 +180,6 @@ def adminContactUs():
         num_pages=num_pages,
         network_details=network_details
     )
-
 
 @app.route('/replyQuestion', methods=['POST', 'GET'])
 def replyQuestion():
