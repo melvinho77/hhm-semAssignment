@@ -150,6 +150,9 @@ def contact_us():
     # Call the get_network_details function to retrieve network details
     network_details = get_network_details()
 
+    # Flash a success message
+    flash('Question submitted successfully', 'success')
+
     # Pass the network_details and msg to the contactUs.html template
     return render_template("contactUs.html", network_details=network_details)
 
@@ -197,7 +200,7 @@ def submitContactUs():
         flash('Question submitted successfully', 'success')
 
         # Redirect back to the contactUs page
-        return redirect('/contactUs.html')
+        return redirect('/contactUs')
 
     except Exception as e:
         db_conn.rollback()
@@ -287,6 +290,7 @@ def replyQuestion():
 
     # Redirect back to the contactUs page
     return redirect('/adminContactUs')
+
 
 @app.route('/applyFilter', methods=['POST', 'GET'])
 def applyFilter():
