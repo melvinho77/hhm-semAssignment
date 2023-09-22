@@ -364,7 +364,7 @@ def admin_logout():
     session.pop('name', None)
     session.pop('loggedIn', None)
     
-    return redirect(url_for('/adminLogin'))
+    return redirect(url_for('adminLogin'))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
