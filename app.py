@@ -323,12 +323,12 @@ def applyFilter():
             email = session['email']
             if email == 'hhm@gmail.com' and name == 'Ho Hong Meng':
                 session['loggedIn'] = 'hhm'
-                session['loggedInName'] = 'Ho Hong Meng'
+                session['name'] = 'Ho Hong Meng'
             elif email == 'css@gmail.com' and name == 'Cheong Soo Siew':
                 session['loggedIn'] = 'css'
-                session['loggedInName'] = 'Cheong Soo Siew'
+                session['name'] = 'Cheong Soo Siew'
 
-        return render_template('adminContactUs.html', contact_details=contact_details, network_details=network_details, name=session['loggedInName'])
+        return render_template('adminContactUs.html', contact_details=contact_details, network_details=network_details, name=session['name'])
 
     except Exception as e:
         db_conn.rollback()
