@@ -206,20 +206,17 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
 
-
 @app.route('/adminLogin')
 def adminLogin():
     network_details = get_network_details()
     return render_template('adminLogin.html', network_details=network_details)
 
-
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
     network_details = get_network_details()
-    # Check if 'name' and 'loggedIn' are in session, if not, handle the form submission
-    if 'name' not in session or 'loggedIn' not in session:
-        email = request.form['email']
-        password = request.form['password']
+    # Handle the form submission with email and password
+    email = request.form['email']
+    password = request.form['password']
 
     try:
         cursor = db_conn.cursor()
@@ -245,6 +242,35 @@ def adminContactUs():
         error_msg = 'Invalid email or password. Please try again.'
         return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
+@app.route('/adminRedirect', methods=['POST', 'GET'])
+def adminRedirect():
+    network_details = get_network_details()
+    contactDetails = []
+
+    try:
+        cursor = db_conn.cursor()
+        # Retrieve contact details for the current page
+        cursor.execute("SELECT * FROM contact")
+        contactDetails = cursor.fetchall()
+
+    except Exception as e:
+        db_conn.rollback()
+        return str(e)
+
+    # Check the session for authentication
+    user = session.get('loggedIn')
+
+    if user == 'hhm':
+        session['name'] = 'Ho Hong Meng'
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+
+    elif user == 'css':
+        session['name'] = 'Cheong Soo Siew'
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+
+    else:
+        error_msg = 'You are not logged in. Please log in to access this page.'
+        return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
 @app.route('/replyQuestion', methods=['POST', 'GET'])
 def replyQuestion():
@@ -278,7 +304,7 @@ def replyQuestion():
     flash('Question submitted successfully', 'success')
 
     # Redirect back to the contactUs page
-    return redirect('/adminContactUs')
+    return redirect('/adminRedirect')
 
 
 @app.route('/applyFilter', methods=['POST', 'GET'])
@@ -352,15 +378,13 @@ def studentApplyFilter():
         db_conn.rollback()
         return str(e)
 
-
 @app.route('/logout')
 def admin_logout():
     # Clear session data
     session.pop('name', None)
     session.pop('loggedIn', None)
-
+    
     return redirect(url_for('adminLogin'))
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
