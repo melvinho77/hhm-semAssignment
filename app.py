@@ -358,11 +358,14 @@ def studentApplyFilter():
         db_conn.rollback()
         return str(e)
 
-
-@app.route('/chatbot')
-def chatbot():
-    return render_template('chatbot.html')
-
+@app.route('/logout')
+def admin_logout():
+    # Clear session data
+    session.pop('name', None)
+    session.pop('loggedIn', None)
+    
+    # Redirect to the desired page after logout (e.g., the login page)
+    return redirect(url_for('adminLogin.html'))  # Replace 'login' with the appropriate route
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
