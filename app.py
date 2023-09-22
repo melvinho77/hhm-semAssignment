@@ -211,13 +211,12 @@ def adminLogin():
     network_details = get_network_details()
     return render_template('adminLogin.html', network_details=network_details)
 
-
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
     network_details = get_network_details()
     # Handle the form submission with email and password
-    email = request.form('email')
-    password = request.form('password')
+    email = request.form['email']
+    password = request.form['password']
 
     try:
         cursor = db_conn.cursor()
