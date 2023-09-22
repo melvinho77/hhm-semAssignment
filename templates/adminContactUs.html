@@ -479,11 +479,14 @@
                                         {{ contact[2] }}
                                     </td>
                                     <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
-                                    <td>
-                                        <form action="/replyQuestion" method="POST">
+                                    <form action="/replyQuestion" method="POST">
+                                        <td>
                                             <input type="hidden" value="{{ contact[0] }}" name="contactId">
                                             <textarea class="form-control" name="reply" {% if contact[4] %}readonly{%
                                                 endif %}>{{ contact[4] }}</textarea>
+                                        </td>
+                                        <td class="repliedBy-td">{{ contact[5] }}</td>
+                                        <td style="text-align: center;">
                                             <div class="submit-button">
                                                 {% if contact[4] %}
                                                 <input type="submit" class="btn btn-primary" value="Replied" disabled
@@ -492,9 +495,8 @@
                                                 <input type="submit" class="btn btn-primary" value="Reply" />
                                                 {% endif %}
                                             </div>
-                                        </form>
-                                    </td>
-                                    <td class="repliedBy-td">{{ contact[5] }}</td>
+                                        </td>
+                                    </form>
                                 </tr>
                                 {% endfor %}
                             </tbody>
