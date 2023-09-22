@@ -339,18 +339,64 @@
         .dataTables_wrapper .dataTables_filter input {
             margin-bottom: 10px;
         }
+
+        /* Style the navigation bar */
+        .navbar {
+            background-color: #343a40;
+            padding: 10px 15px;
+            /* Dark background color */
+        }
+
+        .navbar ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #fff;
+            /* White text color */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+            /* White color for the toggler icon */
+        }
+
+        /* Style the Log Out button */
+        .nav-item .btn-danger {
+            background-color: #dc3545;
+            /* Red background color */
+            border-color: #dc3545;
+            /* Red border color */
+            color: #fff;
+            /* White text color */
+            padding: 8px 16px;
+            /* Adjust padding as needed */
+            border-radius: 4px;
+            /* Rounded corners */
+        }
+
+        /* Hover effect for the Log Out button */
+        .nav-item .btn-danger:hover {
+            background-color: #c82333;
+            /* Darker red on hover */
+            border-color: #c82333;
+            /* Darker red border on hover */
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">TARUMT College</a>
+        <a class="navbar-brand" href="#">TARUMT Admin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav" style="margin-left: auto;">
                 <!-- Add a Log Out button in the navbar -->
                 <li class="nav-item">
                     <a class="nav-link btn btn-danger" href="/logout">Log Out</a>
@@ -358,7 +404,6 @@
             </ul>
         </div>
     </nav>
-
     <div class="container">
         <h2 style="margin-top: 10px;">Welcome! [Admin : {{ name }}]</h2>
         <hr>

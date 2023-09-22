@@ -364,8 +364,7 @@ def admin_logout():
     session.pop('name', None)
     session.pop('loggedIn', None)
     
-    # Redirect to the desired page after logout (e.g., the login page)
-    return redirect(url_for('adminLogin.html'))  # Replace 'login' with the appropriate route
+    return redirect(url_for('/adminLogin'))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
