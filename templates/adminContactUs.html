@@ -472,9 +472,9 @@
                             </thead>
                             <tbody id="contact-table-body">
                                 {% for contact in contact_details %}
-                                <tr>
-                                    <form action="/replyQuestion" method="POST">
-                                        <input type="hidden" value="{{ contact[0] }}" name="contactId">
+                                <form action="/replyQuestion" method="POST">
+                                    <input type="hidden" value="{{ contact[0] }}" name="contactId">
+                                    <tr>
                                         <td>{{ contact[6] }}</td>
                                         <td class="category-td"
                                             style="color: {% if contact[1] == 'pending' %}orange{% elif contact[1] == 'completed' %}green{% else %}black{% endif %};">
@@ -493,8 +493,8 @@
                                                 {% endif %}
                                             </div>
                                         </td>
-                                    </form>
-                                </tr>
+                                    </tr>
+                                </form>
                                 {% endfor %}
                             </tbody>
                         </table>
