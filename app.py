@@ -206,17 +206,20 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
 
+
 @app.route('/adminLogin')
 def adminLogin():
     network_details = get_network_details()
     return render_template('adminLogin.html', network_details=network_details)
 
+
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
     network_details = get_network_details()
-    # Handle the form submission with email and password
-    email = request.form['email']
-    password = request.form['password']
+    # Check if 'name' and 'loggedIn' are in session, if not, handle the form submission
+    if 'name' not in session or 'loggedIn' not in session:
+        email = request.form['email']
+        password = request.form['password']
 
     try:
         cursor = db_conn.cursor()
@@ -349,13 +352,15 @@ def studentApplyFilter():
         db_conn.rollback()
         return str(e)
 
+
 @app.route('/logout')
 def admin_logout():
     # Clear session data
     session.pop('name', None)
     session.pop('loggedIn', None)
-    
+
     return redirect(url_for('adminLogin'))
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
