@@ -212,37 +212,29 @@ def adminLogin():
     network_details = get_network_details()
     return render_template('adminLogin.html', network_details=network_details)
 
-
 @app.route('/adminContactUs', methods=['POST', 'GET'])
-def adminContactUs():
+def adminLogin():
     network_details = get_network_details()
-    # Handle the form submission with email and password
-    email = request.form('email')
-    password = request.form('password')
+    msg = None
 
-    try:
-        cursor = db_conn.cursor()
-        # Retrieve contact details for the current page
-        cursor.execute("SELECT * FROM contact")
-        contactDetails = cursor.fetchall()
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
 
-    except Exception as e:
-        db_conn.rollback()
-        return str(e)
+        if email == 'hhm@gmail.com' and password == '123':
+            session['name'] = 'Ho Hong Meng'
+            session['loggedIn'] = 'hhm'
+            return redirect(url_for('adminContactUs'))
 
-    if email == 'hhm@gmail.com' and password == '123':
-        session['name'] = 'Ho Hong Meng'
-        session['loggedIn'] = 'hhm'
-        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+        elif email == 'css@gmail.com' and password == '456':
+            session['name'] = 'Cheong Soo Siew'
+            session['loggedIn'] = 'css'
+            return redirect(url_for('adminContactUs'))
 
-    elif email == 'css@gmail.com' and password == '456':
-        session['name'] = 'Cheong Soo Siew'
-        session['loggedIn'] = 'css'
-        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+        else:
+            msg = 'Invalid email or password. Please try again.'
 
-    else:
-        error_msg = 'Invalid email or password. Please try again.'
-        return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
+    return render_template('adminLogin.html', msg=msg, network_details=network_details)
 
 
 @app.route('/replyQuestion', methods=['POST', 'GET'])
@@ -351,13 +343,15 @@ def studentApplyFilter():
         db_conn.rollback()
         return str(e)
 
+
 @app.route('/logout')
 def admin_logout():
     # Clear session data
     session.pop('name', None)
     session.pop('loggedIn', None)
-    
+
     return redirect(url_for('adminLogin'))
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
