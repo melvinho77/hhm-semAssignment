@@ -485,9 +485,12 @@
                                         <td class="repliedBy-td">{{ contact[5] }}</td>
                                         <td style="text-align: center;">
                                             <div class="submit-button">
-                                                <input type="submit" class="btn btn-primary" value="Reply" {% if
-                                                    contact[4] is not None %} disabled style="cursor: not-allowed;" {%
-                                                    endif %}/>
+                                                {% if contact[4] %}
+                                                <input type="submit" class="btn btn-primary" value="Replied" disabled
+                                                    style="cursor: not-allowed;" />
+                                                {% else %}
+                                                <input type="submit" class="btn btn-primary" value="Reply" />
+                                                {% endif %}
                                             </div>
                                         </td>
                                     </tr>
