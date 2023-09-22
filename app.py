@@ -247,16 +247,9 @@ def adminContactUs():
         elif email == 'css@gmail.com' and password == '456':
             return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
-        else:
-            error_msg = 'Invalid email or password. Please try again.'
-            return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
-
-    return render_template(
-        'adminContactUs.html',
-        name=session['name'],
-        contact_details=contactDetails,
-        network_details=network_details
-    )
+    else:
+        error_msg = 'Invalid email or password. Please try again.'
+        return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
 
 @app.route('/replyQuestion', methods=['POST', 'GET'])
