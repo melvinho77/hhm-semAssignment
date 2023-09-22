@@ -472,29 +472,28 @@
                             </thead>
                             <tbody id="contact-table-body">
                                 {% for contact in contact_details %}
-                                <form action="/replyQuestion" method="POST">
-                                    <input type="hidden" value="{{ contact[0] }}" name="contactId">
-                                    <tr>
-                                        <td>{{ contact[6] }}</td>
-                                        <td class="category-td"
-                                            style="color: {% if contact[1] == 'pending' %}orange{% elif contact[1] == 'completed' %}green{% else %}black{% endif %};">
-                                            {{ contact[2] }}</td>
-                                        <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
-                                        <td><textarea class="form-control" name="reply" {% if contact[4] %} readonly {%
-                                                endif %}>{{ contact[4] }}</textarea></td>
-                                        <td class="repliedBy-td">{{ contact[5] }}</td>
-                                        <td style="text-align: center;">
+                                <tr>
+                                    <td>{{ contact[6] }}</td>
+                                    <td class="category-td"
+                                        style="color: {% if contact[1] == 'pending' %}orange{% elif contact[1] == 'completed' %}green{% else %}black{% endif %};">
+                                        {{ contact[2] }}</td>
+                                    <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
+                                    <td>
+                                        <textarea class="form-control" name="reply">{{ contact[4] }}</textarea>
+                                    </td>
+                                    <td class="repliedBy-td">{{ contact[5] }}</td>
+                                    <td style="text-align: center;">
+                                        <form action="/replyQuestion" method="POST">
+                                            <input type="hidden" value="{{ contact[0] }}" name="contactId">
+                                            <!-- Include other hidden fields for the columns you want to retrieve -->
                                             <div class="submit-button">
-                                                {% if contact[4] %}
-                                                <input type="submit" class="btn btn-primary" value="Replied" disabled
-                                                    style="cursor: not-allowed;" />
-                                                {% else %}
-                                                <input type="submit" class="btn btn-primary" value="Reply" />
-                                                {% endif %}
+                                                <input type="submit" class="btn btn-primary"
+                                                    value="{% if contact[4] %}Replied{% else %}Reply{% endif %}" {% if
+                                                    contact[4] %} disabled style="cursor: not-allowed;" {% endif %}>
                                             </div>
-                                        </td>
-                                    </tr>
-                                </form>
+                                        </form>
+                                    </td>
+                                </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
