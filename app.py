@@ -282,8 +282,10 @@ def replyQuestion():
         email = session['email']
         if email == 'hhm@gmail.com' and name == 'Ho Hong Meng':
             session['loggedIn'] = 'hhm'
+            session['name'] = 'Ho Hong Meng'
         elif email == 'css@gmail.com' and name == 'Cheong Soo Siew':
             session['loggedIn'] = 'css'
+            session['name'] = 'Cheong Soo Siew'
 
     # Flash a success message
     flash('Question submitted successfully', 'success')
