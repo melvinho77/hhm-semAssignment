@@ -215,19 +215,10 @@ def adminLogin():
 
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
+    network_details = get_network_details()
     # Handle the form submission with email and password
     email = request.form('email')
     password = request.form('password')
-
-    if email == 'hhm@gmail.com' and password == '123':
-        session['name'] = 'Ho Hong Meng'
-        session['loggedIn'] = 'hhm'
-
-    elif email == 'css@gmail.com' and password == '456':
-        session['name'] = 'Cheong Soo Siew'
-        session['loggedIn'] = 'css'
-
-    network_details = get_network_details()
 
     try:
         cursor = db_conn.cursor()
@@ -240,9 +231,13 @@ def adminContactUs():
         return str(e)
 
     if email == 'hhm@gmail.com' and password == '123':
+        session['name'] = 'Ho Hong Meng'
+        session['loggedIn'] = 'hhm'
         return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
     elif email == 'css@gmail.com' and password == '456':
+        session['name'] = 'Cheong Soo Siew'
+        session['loggedIn'] = 'css'
         return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
     else:
