@@ -216,8 +216,8 @@ def adminLogin():
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
     # Handle the form submission with email and password
-    email = request.form.get('email')
-    password = request.form.get('password')
+    email = request.form('email')
+    password = request.form('password')
 
     if email == 'hhm@gmail.com' and password == '123':
         session['name'] = 'Ho Hong Meng'
@@ -239,13 +239,11 @@ def adminContactUs():
         db_conn.rollback()
         return str(e)
 
-    if request.method == 'POST':
+    if email == 'hhm@gmail.com' and password == '123':
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
-        if email == 'hhm@gmail.com' and password == '123':
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
-
-        elif email == 'css@gmail.com' and password == '456':
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+    elif email == 'css@gmail.com' and password == '456':
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
     else:
         error_msg = 'Invalid email or password. Please try again.'
