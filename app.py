@@ -206,7 +206,6 @@ def submitContactUs():
         db_conn.rollback()
         return str(e)
 
-
 @app.route('/adminLogin')
 def adminLogin():
     network_details = get_network_details()
