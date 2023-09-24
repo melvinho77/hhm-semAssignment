@@ -9,7 +9,6 @@ import socket
 from config import *
 import datetime
 import difflib
-# from weasyprint import HTML
 
 app = Flask(__name__)
 app.static_folder = 'static'  # The name of your static folder
@@ -143,19 +142,16 @@ def get_network_details():
         return {'Error': str(e)}
 
 # N10 - Trace contact details
-
-
 @app.route("/contactUs")
 def contact_us():
     # Call the get_network_details function to retrieve network details
     network_details = get_network_details()
 
-    # Flash a success message
-    flash('Question submitted successfully', 'success')
+    # # Flash a success message
+    # flash('Question submitted successfully', 'success')
 
     # Pass the network_details and msg to the contactUs.html template
     return render_template("contactUs.html", network_details=network_details)
-
 
 @app.route("/trackContactUs")
 def trackContactUs():
@@ -178,7 +174,6 @@ def trackContactUs():
         return str(e)
 
     return render_template("studentContactUs.html", contact_data=contact_data, student=session['loggedInStudent'], network_details=network_details)
-
 
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
@@ -385,6 +380,7 @@ def admin_logout():
     session.pop('loggedIn', None)
     
     return redirect(url_for('adminLogin'))
+# N10 - Trace contact details
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
